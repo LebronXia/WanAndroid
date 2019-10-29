@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WanAndroid</string>
+    <string name="home">首页</string>
+    <string name="knowledge_system">知识体系</string>
+    <string name="navigation">导航</string>
+    <string name="project">项目</string>
+    <string name="wechat">公众号</string>
+
+    <!--Nav-->
+    <string name="nav_my_score">我的积分</string>
+    <string name="nav_grade">等级:</string>
+    <string name="nav_rank">排名:</string>
+
+</resources>
