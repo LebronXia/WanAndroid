@@ -2,6 +2,7 @@ package com.xiamu.baselibs.http
 
 import com.xiamu.baselibs.BuildConfig
 import com.xiamu.baselibs.constant.HttpConstant
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,24 +16,24 @@ import java.util.concurrent.TimeUnit
 abstract class BaseRetrofitClient {
 
     private val client: OkHttpClient
-    get() {
-        val builder = OkHttpClient.Builder()
-        val logging = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            logging.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            logging.level = HttpLoggingInterceptor.Level.BASIC
-        }
-//
-//        if (BuildConfig.DEBUG)
-//            var printHttpLogLevel :
+        get() {
+            val builder = OkHttpClient.Builder()
+            val logging = HttpLoggingInterceptor()
+            if (BuildConfig.DEBUG) {
+                logging.level = HttpLoggingInterceptor.Level.BODY
+            } else {
+                logging.level = HttpLoggingInterceptor.Level.BASIC
+            }
+    //
+    //        if (BuildConfig.DEBUG)
+    //            var printHttpLogLevel :
 
 
-        builder.addNetworkInterceptor(logging)
-            .connectTimeout(HttpConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            builder.addNetworkInterceptor(logging)
+                .connectTimeout(HttpConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
 
-        handleBuilder(builder)
-        return builder.build()
+            handleBuilder(builder)
+            return builder.build()
     }
 
     protected abstract fun handleBuilder(builder: OkHttpClient.Builder)
@@ -41,7 +42,8 @@ abstract class BaseRetrofitClient {
         return Retrofit.Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(baseUrl)
             .build().create(serviceClass)
 

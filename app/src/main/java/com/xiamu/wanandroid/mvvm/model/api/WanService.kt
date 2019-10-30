@@ -1,5 +1,7 @@
 package com.xiamu.wanandroid.mvvm.model.api
 
+import com.xiamu.baselibs.base.WanResponse
+import com.xiamu.wanandroid.mvvm.model.entry.ArticleList
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -9,9 +11,10 @@ import retrofit2.http.Path
 interface WanService {
 
     companion object {
-        const val BASE_URL = "https://www.android.com"
+        const val BASE_URL = "https://www.wanandroid.com"
     }
 
-//    @GET("/article/list/{page}/json")
-//    fun getHomeArticles(@Path("page") page: Int) :
+    //获取首页文章列表
+    @GET("/article/list/{page}/json")
+    suspend fun getHomeArticles(@Path("page") page: Int): WanResponse<ArticleList>
 }

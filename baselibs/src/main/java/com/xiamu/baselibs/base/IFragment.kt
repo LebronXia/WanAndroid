@@ -16,11 +16,7 @@ interface IFragment {
     * @param  val Bundle :savedInstanceState? = null
     * @ return View
     */
-   fun initView(
-        inflater: LayoutInflater?,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View
+   fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
 
     /**
      * 数据初始化

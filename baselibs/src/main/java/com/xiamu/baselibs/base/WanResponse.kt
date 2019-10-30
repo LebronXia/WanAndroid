@@ -1,4 +1,4 @@
-package com.xiamu.wanandroid.mvvm.model.entry
+package com.xiamu.baselibs.base
 
 /**
  * Created by zhengxiaobo in 2019-10-29

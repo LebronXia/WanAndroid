@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding{
+        enabled true
+    }
 }
 
 dependencies {
@@ -36,6 +40,14 @@ dependencies {
     implementation rootProject.ext.dependencies["cardview"]
     implementation rootProject.ext.dependencies["circleimageview"]
     implementation rootProject.ext.dependencies["constraintlayout"]
+
+    //ui
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    implementation rootProject.ext.dependencies["glide-loader-okhttp3"]
+    implementation rootProject.ext.dependencies["youth_banner"]
+
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
 
 }

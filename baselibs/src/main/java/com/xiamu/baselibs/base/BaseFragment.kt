@@ -23,21 +23,17 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFr
      */
     var mFirst: Boolean = true
     var mRootView: View?= null
-    var mBinding: DB ?= null
+    lateinit var mBinding: DB
     var mViewModel: VM ?= null
 
     constructor(){
         setArguments(Bundle())
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = initView(inflater, container, savedInstanceState)
 
-        if (mViewModel == null) lifecycle.addObserver(mViewModel as LifecycleObserver)
+        if (mViewModel != null) lifecycle.addObserver(mViewModel as LifecycleObserver)
         if (mVisible && mFirst){
             onFragmentVisibleChange(true)
         }
@@ -47,7 +43,11 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData(savedInstanceState)
+        startObserve()
     }
+
+    open fun startObserve(){}
+
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
@@ -69,10 +69,10 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFr
      */
     fun onFragmentVisibleChange(isVisible: Boolean){}
 
+
     override fun onDestroy() {
         if (mViewModel != null)
             lifecycle.removeObserver(mViewModel as LifecycleObserver)
-        this.mBinding = null
         this.mRootView = null
         super.onDestroy()
     }

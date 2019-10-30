@@ -33,6 +33,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.1.0'
+
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha04"
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha04'
+
     implementation rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["timber"]
     testImplementation rootProject.ext.dependencies["junit"]
@@ -41,36 +46,16 @@ dependencies {
     api rootProject.ext.dependencies["androideventbus"]
 
     //network
-    api(rootProject.ext.dependencies["retrofit"]) {
-        exclude module: 'okhttp'
-        exclude module: 'okio'
-    }
-    api(rootProject.ext.dependencies["retrofit-converter-gson"]) {
-        exclude module: 'gson'
-        exclude module: 'okhttp'
-        exclude module: 'okio'
-        exclude module: 'retrofit'
-    }
-    api(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
-        exclude module: 'rxjava'
-        exclude module: 'okhttp'
-        exclude module: 'retrofit'
-        exclude module: 'okio'
-    }
-    api rootProject.ext.dependencies["okhttp3"]
-    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    api rootProject.ext.dependencies["okhttp-logging-interceptor"]
+    api rootProject.ext.dependencies["gson"]
 
     //rx
     api rootProject.ext.dependencies["rxjava2"]
     api(rootProject.ext.dependencies["rxandroid2"]) {
         exclude module: 'rxjava'
     }
-//    api(rootProject.ext.dependencies["rxcache"]) {
-//        exclude module: 'rxjava'
-//        exclude module: 'dagger'
-//    }
-//    api(rootProject.ext.dependencies["rxcache-jolyglot"]) {
-//        exclude module: 'gson'
-//    }
 
 }
