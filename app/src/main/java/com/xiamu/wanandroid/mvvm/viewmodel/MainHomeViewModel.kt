@@ -5,10 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.xiamu.baselibs.http.Result
 import com.xiamu.baselibs.mvvm.BaseViewModel
 import com.xiamu.wanandroid.mvvm.model.entry.ArticleList
+import com.xiamu.wanandroid.mvvm.model.entry.Banner
 import com.xiamu.wanandroid.mvvm.model.repository.MainHomeModel
+import com.xiamu.wanandroid.util.executeResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 /**
  * Created by zhengxiaobo in 2019-10-29
@@ -20,6 +23,14 @@ class MainHomeViewModel: BaseViewModel() {
     private var currentPage = 0
     //val mArticleList: MutableLiveData<ArticleList> = MutableLiveData()
     val _uistate: MutableLiveData<UiModel<ArticleList>> = MutableLiveData()
+    val banners: MutableLiveData<List<Banner>> = MutableLiveData()
+
+    fun getBanner(){
+        launch {
+            val result = withContext(Dispatchers.IO){ homeModel.getBanner() }
+            executeResponse(result,{banners.value = result.data}, {mException.value = IOException(result.errMsg)})
+        }
+    }
 
     fun getHomeArticleList(isRefresh: Boolean = false){
 
@@ -27,7 +38,7 @@ class MainHomeViewModel: BaseViewModel() {
             withContext(Dispatchers.Main){
                 emitUiState(true)
             }
-            if (isRefresh) currentPage = 0;
+            if (isRefresh) currentPage = 0
             val result = homeModel.getArticleList(currentPage)
             withContext(Dispatchers.Main){
                 if (result is Result.Success){

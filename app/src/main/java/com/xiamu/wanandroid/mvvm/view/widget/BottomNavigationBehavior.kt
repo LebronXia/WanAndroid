@@ -10,7 +10,7 @@ import androidx.core.view.ViewCompat
 /**
  * Created by zhengxiaobo in 2019-10-29
  */
-class BottomNavigationBehavior: CoordinatorLayout.Behavior<View>() {
+class BottomNavigationBehavior(context: Context, attributeSet: AttributeSet): CoordinatorLayout.Behavior<View>() {
     private var outAnimator: ObjectAnimator?= null
     private var inAnimator: ObjectAnimator?= null
 
@@ -40,15 +40,15 @@ class BottomNavigationBehavior: CoordinatorLayout.Behavior<View>() {
                 outAnimator?.duration = 200
             }
             if (!outAnimator!!.isRunning && child.translationY <= 0) {
-                outAnimator?.start();
+                outAnimator?.start()
             }
         } else if (dy < 0) {// 下滑显示
             if (inAnimator == null) {
                 inAnimator = ObjectAnimator.ofFloat(child, "translationY", child.getHeight().toFloat(), 0f);
-                inAnimator?.duration=200;
+                inAnimator?.duration=200
             }
             if (!inAnimator!!.isRunning && child.translationY>= child.height) {
-                inAnimator?.start();
+                inAnimator?.start()
             }
         }
     }

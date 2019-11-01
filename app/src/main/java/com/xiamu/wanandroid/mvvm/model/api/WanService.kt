@@ -2,6 +2,7 @@ package com.xiamu.wanandroid.mvvm.model.api
 
 import com.xiamu.baselibs.base.WanResponse
 import com.xiamu.wanandroid.mvvm.model.entry.ArticleList
+import com.xiamu.wanandroid.mvvm.model.entry.Banner
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -17,4 +18,8 @@ interface WanService {
     //获取首页文章列表
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): WanResponse<ArticleList>
+
+    //获取首页banner
+    @GET("/banner/json")
+    suspend fun getHomeBanner(): WanResponse<List<Banner>>
 }
