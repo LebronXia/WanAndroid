@@ -1,6 +1,5 @@
 package com.xiamu.baselibs.mvvm
 
-import android.app.Application
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -63,6 +62,12 @@ open class BaseViewModel : ViewModel(), IViewModel, LifecycleObserver {
             }
         }
     }
+
+    data class UiModel<T: Any>(
+        val showLoading: Boolean,
+        val showError: String?,
+        val showSuccess: T?
+    )
 
 
 

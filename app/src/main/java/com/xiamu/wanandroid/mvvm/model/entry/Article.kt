@@ -1,4 +1,4 @@
-package luyao.wanandroid.model.bean
+package com.xiamu.wanandroid.mvvm.model.entry
 
 import java.io.Serializable
 

@@ -4,10 +4,6 @@ import android.app.Activity
 import java.util.*
 import java.lang.Class
 
-/**
- * Created by luyao
- * on 2019/8/6 10:58
- */
 object KtxManager {
 
     private val mActivityList = LinkedList<Activity>()

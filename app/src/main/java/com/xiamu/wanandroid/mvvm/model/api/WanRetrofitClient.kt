@@ -5,7 +5,7 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.xiamu.baselibs.http.BaseRetrofitClient
 import com.xiamu.wanandroid.app.WanAndApplication
-import luyao.wanandroid.util.NetWorkUtils
+import com.xiamu.wanandroid.util.NetWorkUtils
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.HttpUrl

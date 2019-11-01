@@ -12,12 +12,6 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import java.io.Serializable
 
-/**
- * Created by luyao
- * on 2019/7/9 14:17
- */
-
-
 inline fun <reified T : Activity> Activity.startKtxActivity(
     flags: Int? = null,
     extra: Bundle? = null,

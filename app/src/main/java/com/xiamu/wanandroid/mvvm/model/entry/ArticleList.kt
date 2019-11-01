@@ -1,6 +1,5 @@
 package com.xiamu.wanandroid.mvvm.model.entry
 
-import luyao.wanandroid.model.bean.Article
 import java.io.Serializable
 
 /**

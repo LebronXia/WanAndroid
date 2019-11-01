@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -30,13 +32,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0'
     implementation project(':baselibs')
     implementation rootProject.ext.dependencies["design"]
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    kapt "com.android.databinding:compiler:$compiler_version"
 
     //view
-    implementation rootProject.ext.dependencies["recyclerview"]
     implementation rootProject.ext.dependencies["cardview"]
     implementation rootProject.ext.dependencies["circleimageview"]
     implementation rootProject.ext.dependencies["constraintlayout"]
@@ -48,6 +49,8 @@ dependencies {
     implementation rootProject.ext.dependencies["youth_banner"]
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+}
 
-
+kapt {
+    generateStubs = true
 }

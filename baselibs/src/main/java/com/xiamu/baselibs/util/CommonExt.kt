@@ -8,10 +8,6 @@ import android.text.TextUtils
 import android.view.View
 import androidx.annotation.RequiresApi
 
-/**
- * Created by luyao
- * on 2019/6/14 14:23
- */
 
 /**
  * Whether horizontal layout direction of this view is from Right to Left.

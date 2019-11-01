@@ -7,6 +7,12 @@
     <color name="textColorPrimary">#616161</color>
 
     <color name="item_nav_color_tv">#19191B</color>
+    <!--item-->
+    <color name="item_title">#19191B</color>
+    <color name="item_tag">@color/Grey</color>
+    <color name="item_date">@color/Grey</color>
+    <color name="item_time">@color/Grey</color>
+    <color name="item_des">@color/Grey</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

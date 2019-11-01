@@ -3,6 +3,7 @@
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="item_content_padding">12dp</dimen>
 
     <!-- dp -->
     <dimen name="dp_05">0.5dp</dimen>

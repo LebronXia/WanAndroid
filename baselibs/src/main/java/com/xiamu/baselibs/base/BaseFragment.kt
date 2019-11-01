@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.xiamu.baselibs.mvvm.BaseViewModel
 import com.xiamu.baselibs.mvvm.IViewModel
 
 /**
  * Created by zhengxiaobo in 2019-10-28
  */
-abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFragment{
+abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel> : Fragment, IFragment{
 
     /**
      * 是否可见，用于懒加载
@@ -24,16 +27,15 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFr
     var mFirst: Boolean = true
     var mRootView: View?= null
     lateinit var mBinding: DB
-    var mViewModel: VM ?= null
+    lateinit var mViewModel: VM
 
     constructor(){
         setArguments(Bundle())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        initVM()
         mRootView = initView(inflater, container, savedInstanceState)
-
-        if (mViewModel != null) lifecycle.addObserver(mViewModel as LifecycleObserver)
         if (mVisible && mFirst){
             onFragmentVisibleChange(true)
         }
@@ -46,7 +48,20 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFr
         startObserve()
     }
 
-    open fun startObserve(){}
+    private fun initVM() {
+        providerVMClass()?.let {
+            mViewModel = ViewModelProviders.of(this).get(it)
+            lifecycle.addObserver(mViewModel)
+        }
+    }
+
+    open fun providerVMClass(): Class<VM>? = null
+
+    open fun startObserve(){
+        mViewModel?.mException?.observe(this, Observer { it?.let { onError(it) } })
+    }
+
+    open fun onError(e: Throwable) {}
 
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
@@ -71,8 +86,7 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: IViewModel> : Fragment, IFr
 
 
     override fun onDestroy() {
-        if (mViewModel != null)
-            lifecycle.removeObserver(mViewModel as LifecycleObserver)
+        lifecycle.removeObserver(mViewModel)
         this.mRootView = null
         super.onDestroy()
     }
