@@ -47,6 +47,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["glide-loader-okhttp3"]
     implementation rootProject.ext.dependencies["youth_banner"]
+    implementation rootProject.ext.dependencies["dialog"]
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }

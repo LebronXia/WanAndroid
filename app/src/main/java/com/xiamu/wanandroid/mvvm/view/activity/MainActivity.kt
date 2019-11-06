@@ -1,16 +1,25 @@
 package com.xiamu.wanandroid.mvvm.view.activity
 
+import android.content.Intent
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.xiamu.baselibs.base.BaseActivity
 import com.xiamu.baselibs.base.BaseVmActivity
+import com.xiamu.baselibs.util.toast
+import com.xiamu.wanandroid.Constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.MainBinding
 import com.xiamu.wanandroid.mvvm.view.fragment.HomeFragment
 import com.xiamu.wanandroid.mvvm.view.fragment.KnowledgeTreeFragment
+import com.xiamu.wanandroid.util.Preference
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : BaseActivity<MainBinding>() {
+
+    private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
 
     private val FRAGMENT_HOME = 0x01
     private val FRAGMENT_KNOWLEDGE = 0x02
@@ -35,10 +44,33 @@ class MainActivity : BaseActivity<MainBinding>() {
         mBinding.bottomNav.run {
             setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         }
+        initDrawerLayout()
+        initNavView()
         showFragment(mIndex)
     }
 
+    private fun initNavView() {
+        nav_view.run {
+            setNavigationItemSelectedListener (onDrawerNavigationItemSelectedListener)
+        }
+
+    }
+
+    private fun initDrawerLayout() {
+        drawer_layout.run {
+            val toggle = ActionBarDrawerToggle(
+                this@MainActivity,
+                this,
+                toolbar
+                , R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close)
+            addDrawerListener(toggle)
+            toggle.syncState()
+        }
+    }
+
     override fun initData() {
+
     }
 
     /**
@@ -143,5 +175,24 @@ class MainActivity : BaseActivity<MainBinding>() {
                 }
             }
         }
+
+    private val onDrawerNavigationItemSelectedListener =
+        NavigationView.OnNavigationItemSelectedListener {item ->
+            when(item.itemId){
+                R.id.nav_score -> {
+                    if (isLogin){
+                        toast("你已登陆成功")
+                    } else {
+                        toast(resources.getString(R.string.please_login))
+                        goLogin()
+                    }
+                }
+            }
+            return@OnNavigationItemSelectedListener  true
+        }
+
+    private fun goLogin(){
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
 
 }

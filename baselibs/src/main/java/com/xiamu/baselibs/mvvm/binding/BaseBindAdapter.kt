@@ -21,12 +21,4 @@ abstract class BaseBindAdapter<T>(layoutResId: Int, data: List<T>?): BaseQuickAd
         return binding.root
     }
 
-//    inner class BaseBindHolder(itemView: View) : BaseViewHolder(itemView) {
-//
-//        fun getBinding(): ViewDataBinding? {
-//            return itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ViewDataBinding?
-//        }
-//
-//    }
-
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.xiamu.baselibs.mvvm.BaseViewModel
 import com.xiamu.baselibs.mvvm.IViewModel
+import java.util.prefs.Preferences
 
 /**
  * Created by zhengxiaobo in 2019-10-28
