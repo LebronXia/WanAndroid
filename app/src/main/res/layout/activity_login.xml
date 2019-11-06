@@ -95,7 +95,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/et_login_noaccount"
+                    android:id="@+id/tv_login_noaccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/login_no_account"

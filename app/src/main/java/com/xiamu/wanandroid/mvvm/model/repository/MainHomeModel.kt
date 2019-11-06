@@ -22,7 +22,7 @@ class MainHomeModel : BaseModel() {
     private suspend fun requestArticleList(page: Int): Result<ArticleList>{
         val response = WanRetrofitClient.service.getHomeArticles(page)
         return if (response.isSuccess()) Result.Success(response.data)
-        else Result.Error(IOException(response.errMsg))
+        else Result.Error(IOException(response.errorMsg))
     }
 
     suspend fun getBanner(): WanResponse<List<Banner>>{

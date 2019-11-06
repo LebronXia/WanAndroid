@@ -25,6 +25,7 @@
         </activity>
 
         <activity android:name=".mvvm.view.activity.LoginActivity" />
+        <activity android:name=".mvvm.view.activity.RegisterActivity" />
 
     </application>
 

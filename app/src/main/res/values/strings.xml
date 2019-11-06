@@ -23,4 +23,18 @@
     <string name="login_no_account">没有账号？去注册</string>
     <string name="please_login">请先登陆</string>
 
+    <string name="register_userreg">注册用户</string>
+    <string name="register_regdes">用户注册后才可以登录！</string>
+    <string name="register_username">用户名</string>
+    <string name="register_password">密码</string>
+    <string name="register_retry_password">再输入一次密码</string>
+    <string name="register">注册</string>
+    <string name="register_no_account">已有账户？去登录</string>
+
+    <string name="username_not_empty">用户名不能为空</string>
+    <string name="password_not_empty">密码不能为空</string>
+    <string name="confirm_password_not_empty">确认密码不能为空</string>
+    <string name="password_cannot_match">两个密码不相同</string>
+
+
 </resources>

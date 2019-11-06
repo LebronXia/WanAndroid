@@ -28,7 +28,7 @@ class MainHomeViewModel: BaseViewModel() {
     fun getBanner(){
         launch {
             val result = withContext(Dispatchers.IO){ homeModel.getBanner() }
-            executeResponse(result,{banners.value = result.data}, {mException.value = IOException(result.errMsg)})
+            executeResponse(result,{banners.value = result.data}, {mException.value = IOException(result.errorMsg)})
         }
     }
 
@@ -44,7 +44,7 @@ class MainHomeViewModel: BaseViewModel() {
                 if (result is Result.Success){
                     //mArticleList.value = result.data
                     val articleList = result.data
-                    if (articleList.offset >= articleList.total){
+                    if (articleList!!.offset >= articleList.total){
                         return@withContext
                     }
                     currentPage++

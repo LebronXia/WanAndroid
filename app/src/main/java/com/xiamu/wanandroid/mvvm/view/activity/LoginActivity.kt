@@ -1,5 +1,6 @@
 package com.xiamu.wanandroid.mvvm.view.activity
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import com.hss01248.dialog.StyledDialog
 import com.xiamu.baselibs.base.BaseVmActivity
@@ -10,6 +11,7 @@ import com.xiamu.wanandroid.databinding.LoginBinding
 import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel
 import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 /**
  * Created by zhengxiaobo in 2019-11-03
@@ -28,10 +30,23 @@ class LoginActivity : BaseVmActivity<LoginBinding, LoginViewModel>() {
     }
 
     override fun initView() {
+
+        toolbar.run {
+            title = resources.getString(R.string.login)
+            setSupportActionBar(this)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        et_login_username.setText(_user)
         tv_login.setOnClickListener {
             if (validate())
                 mViewModel.login(et_login_username.text.toString(), et_login_password.text.toString())
         }
+        tv_login_noaccount.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
     }
 
     override fun initData() {
@@ -56,7 +71,6 @@ class LoginActivity : BaseVmActivity<LoginBinding, LoginViewModel>() {
 
                 it.showError?.let {
                     hideLoading()
-                    toast(it)
                 }
 
             })

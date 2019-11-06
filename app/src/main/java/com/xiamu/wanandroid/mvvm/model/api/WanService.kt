@@ -4,6 +4,7 @@ import com.xiamu.baselibs.base.WanResponse
 import com.xiamu.wanandroid.mvvm.model.entry.ArticleList
 import com.xiamu.wanandroid.mvvm.model.entry.Banner
 import com.xiamu.wanandroid.mvvm.model.entry.LoginBean
+import com.xiamu.wanandroid.mvvm.model.entry.RegisterBean
 import retrofit2.http.*
 
 /**
@@ -32,5 +33,5 @@ interface WanService {
     //注册
     @FormUrlEncoded
     @POST("/user/register")
-    suspend fun register(@Field("username") username: String, @Field("password")password: String, @Field("repassword")repassword:String)
+    suspend fun register(@Field("username") username: String, @Field("password")password: String, @Field("repassword")repassword:String): WanResponse<LoginBean>
 }

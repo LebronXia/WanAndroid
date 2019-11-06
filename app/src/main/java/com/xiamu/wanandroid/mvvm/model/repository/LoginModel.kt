@@ -4,6 +4,7 @@ import com.xiamu.baselibs.http.Result
 import com.xiamu.baselibs.mvvm.BaseModel
 import com.xiamu.wanandroid.mvvm.model.api.WanRetrofitClient
 import com.xiamu.wanandroid.mvvm.model.entry.LoginBean
+import com.xiamu.wanandroid.mvvm.model.entry.RegisterBean
 import com.xiamu.wanandroid.util.isSuccess
 import java.io.IOException
 
@@ -19,7 +20,20 @@ class LoginModel : BaseModel() {
     suspend fun requestLogin(username:String, password:String): Result<LoginBean>{
         val response = WanRetrofitClient.service.login(username, password)
         return if (response.isSuccess()) Result.Success(response.data)
-        else  Result.Error(IOException(response.errMsg))
+        else  Result.Error(IOException(response.errorMsg))
+    }
+
+    suspend fun register(username: String, password: String, repassword: String): Result<LoginBean>{
+        return safeApiCall(call = {requestRegister(username, password, repassword)},errorMessage = "注册失败")
+    }
+
+    suspend fun requestRegister(username:String, password:String, repassword: String): Result<LoginBean>{
+        val response = WanRetrofitClient.service.register(username, password, repassword)
+        return if (response.isSuccess())
+            //requestLogin(username, password)
+            Result.Success(response.data)
+        else
+            Result.Error(IOException(response.errorMsg))
     }
 
 }
