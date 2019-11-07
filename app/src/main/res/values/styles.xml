@@ -10,4 +10,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light"/>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
+
 </resources>

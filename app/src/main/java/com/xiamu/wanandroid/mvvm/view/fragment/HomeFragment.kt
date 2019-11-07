@@ -1,19 +1,17 @@
 package com.xiamu.wanandroid.mvvm.view.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.xiamu.baselibs.base.BaseFragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.cxz.wanandroid.widget.RecyclerViewItemDecoration
+import com.hss01248.dialog.StyledDialog.context
+import com.xiamu.baselibs.base.BaseVMFragment
 import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.HomeVieModelBinding
@@ -28,14 +26,22 @@ import kotlinx.android.synthetic.main.fragment_home.*
 /**
  * Created by zhengxiaobo in 2019-10-29
  */
-class HomeFragment: BaseFragment<HomeVieModelBinding, MainHomeViewModel>() {
+class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
 
     private var isFresh = true
     private var bannerView: Banner ?= null
 
+    lateinit var mBinding: HomeVieModelBinding
+
     private val homeArticleAdapter: HomeArticleAdapter by lazy{HomeArticleAdapter(R.layout.item_homelist, null)}
 
     override fun providerVMClass(): Class<MainHomeViewModel>? = MainHomeViewModel::class.java
+
+    private val recyclerViewItemDecoration by lazy {
+        activity?.let {
+            RecyclerViewItemDecoration(it, LinearLayoutManager.VERTICAL)
+        }
+    }
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         //ViewModel 和 binding绑定
@@ -66,6 +72,8 @@ class HomeFragment: BaseFragment<HomeVieModelBinding, MainHomeViewModel>() {
     private fun initRecycleview() {
         mBinding.recycleview.run {
             adapter = homeArticleAdapter
+            itemAnimator = DefaultItemAnimator()
+            recyclerViewItemDecoration?.let { addItemDecoration(it)}
         }
 
         homeArticleAdapter.run {

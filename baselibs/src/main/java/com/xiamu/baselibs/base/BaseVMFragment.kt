@@ -15,7 +15,7 @@ import com.xiamu.baselibs.mvvm.IViewModel
 /**
  * Created by zhengxiaobo in 2019-10-28
  */
-abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel> : Fragment, IFragment{
+abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IFragment{
 
     /**
      * 是否可见，用于懒加载
@@ -26,7 +26,7 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel> : Fragment, 
      */
     var mFirst: Boolean = true
     var mRootView: View?= null
-    lateinit var mBinding: DB
+
     lateinit var mViewModel: VM
 
     constructor(){
@@ -90,7 +90,5 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel> : Fragment, 
         this.mRootView = null
         super.onDestroy()
     }
-
-
 
 }

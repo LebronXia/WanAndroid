@@ -1,10 +1,7 @@
 package com.xiamu.wanandroid.mvvm.model.api
 
 import com.xiamu.baselibs.base.WanResponse
-import com.xiamu.wanandroid.mvvm.model.entry.ArticleList
-import com.xiamu.wanandroid.mvvm.model.entry.Banner
-import com.xiamu.wanandroid.mvvm.model.entry.LoginBean
-import com.xiamu.wanandroid.mvvm.model.entry.RegisterBean
+import com.xiamu.wanandroid.mvvm.model.entry.*
 import retrofit2.http.*
 
 /**
@@ -34,4 +31,13 @@ interface WanService {
     @FormUrlEncoded
     @POST("/user/register")
     suspend fun register(@Field("username") username: String, @Field("password")password: String, @Field("repassword")repassword:String): WanResponse<LoginBean>
+
+    //体系数据
+    @GET("/tree/json")
+    suspend fun getTreeData(): WanResponse<List<TreeBean>>
+
+    //知识体系下的文章
+    @GET("/article/list/0/json?cid=60")
+    suspend fun getTreeListData(@Path("cid")id: Int): WanResponse<TreeDetailBean>
+
 }
