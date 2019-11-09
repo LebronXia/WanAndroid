@@ -5,7 +5,7 @@ package com.xiamu.wanandroid.mvvm.model.entry
  */
 data class TreeDetailBean(
     val curPage: Int,
-    val datas: List<Data>,
+    val datas: List<TreeItemData>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -13,7 +13,7 @@ data class TreeDetailBean(
     val total: Int
 )
 
-data class Data(
+data class TreeItemData(
     val apkLink: String,
     val audit: Int,
     val author: String,

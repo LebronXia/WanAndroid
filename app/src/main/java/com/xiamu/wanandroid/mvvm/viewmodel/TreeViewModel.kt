@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.xiamu.baselibs.mvvm.BaseViewModel
 import com.xiamu.wanandroid.mvvm.model.entry.TreeBean
 import com.xiamu.wanandroid.mvvm.model.entry.TreeDetailBean
+import com.xiamu.wanandroid.mvvm.model.entry.TreeItemData
 import com.xiamu.wanandroid.mvvm.model.repository.KnowTreeRepository
 import com.xiamu.wanandroid.mvvm.model.repository.MainHomeModel
 import com.xiamu.wanandroid.util.executeResponse
@@ -29,10 +30,17 @@ class TreeViewModel : BaseViewModel(){
         }
     }
 
-    fun getTreeDetailData(id: Int){
+    fun getTreeDetailData(currentPage: Int, id: Int){
         launch {
-            val result = withContext(Dispatchers.IO){ treeRepository.getTreeListData(id)}
-            executeResponse(result, {treeDetailState.value = result.data}, {mException.value = IOException(result.errorMsg) })
+
+            val result = withContext(Dispatchers.IO){
+                treeRepository.getTreeListData(currentPage, id)
+            }
+
+            executeResponse(result,
+                {treeDetailState.value = result.data},
+                {mException.value = IOException(result.errorMsg)
+             })
         }
     }
 

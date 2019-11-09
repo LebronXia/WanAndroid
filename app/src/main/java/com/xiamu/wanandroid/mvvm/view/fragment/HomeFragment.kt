@@ -31,7 +31,7 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
     private var isFresh = true
     private var bannerView: Banner ?= null
 
-    lateinit var mBinding: HomeVieModelBinding
+   // lateinit var mBinding: HomeVieModelBinding
 
     private val homeArticleAdapter: HomeArticleAdapter by lazy{HomeArticleAdapter(R.layout.item_homelist, null)}
 
@@ -43,17 +43,34 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
         }
     }
 
-    override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //ViewModel 和 binding绑定
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        mBinding.viewModel = mViewModel
+    override fun attachLayoutRes(): Int {
+        return  R.layout.fragment_home
+    }
+
+    override fun initView(view: View) {
         initBanner()
         initRecycleview()
-        mBinding.refreshlayout.run {
+        refreshlayout.run {
             setOnRefreshListener {refresh()}
         }
-        return mBinding.root
     }
+
+    override fun lazyLoad() {
+        mViewModel.getBanner()
+        refresh()
+    }
+
+//    override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+//        //ViewModel 和 binding绑定
+//        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+//        mBinding.viewModel = mViewModel
+//        initBanner()
+//        initRecycleview()
+//        mBinding.refreshlayout.run {
+//            setOnRefreshListener {refresh()}
+//        }
+//        return mBinding.root
+//    }
 
     private fun initBanner() {
         bannerView = layoutInflater.inflate(R.layout.item_banner, null) as Banner?
@@ -70,7 +87,7 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
     }
 
     private fun initRecycleview() {
-        mBinding.recycleview.run {
+        recycleview.run {
             adapter = homeArticleAdapter
             itemAnimator = DefaultItemAnimator()
             recyclerViewItemDecoration?.let { addItemDecoration(it)}
@@ -85,12 +102,6 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
                 context?.toast("你点击了波泥河~~")
             }
         }
-    }
-
-
-    override fun initData(savedInstanceState: Bundle?) {
-        mViewModel.getBanner()
-        refresh()
     }
 
     private fun refresh(){
@@ -148,9 +159,6 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
         activity?.onNetError(e){
             Log.d("activity", e.message)
         }
-    }
-
-    override fun setData(data: Any) {
     }
 
 

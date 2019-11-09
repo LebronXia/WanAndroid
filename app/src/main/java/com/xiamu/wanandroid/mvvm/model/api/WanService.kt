@@ -37,7 +37,11 @@ interface WanService {
     suspend fun getTreeData(): WanResponse<List<TreeBean>>
 
     //知识体系下的文章
-    @GET("/article/list/0/json?cid=60")
-    suspend fun getTreeListData(@Path("cid")id: Int): WanResponse<TreeDetailBean>
+    @GET("/article/list/{page}/json")
+    suspend fun getTreeListData(@Path("page") page: Int, @Query("cid")id: Int): WanResponse<TreeDetailBean>
+
+    //获取公众号列表
+    @GET("/wxarticle/chapters/json")
+    suspend fun getWxArtileList(): WanResponse<List<TreeBean>>
 
 }

@@ -6,9 +6,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.xiamu.baselibs.base.BaseActivity
-import com.xiamu.baselibs.base.BaseVmActivity
 import com.xiamu.baselibs.util.toast
-import com.xiamu.wanandroid.Constant.AppConstant
+import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.MainBinding
 import com.xiamu.wanandroid.mvvm.view.fragment.HomeFragment

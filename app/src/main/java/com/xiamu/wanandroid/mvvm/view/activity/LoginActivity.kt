@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.Observer
 import com.hss01248.dialog.StyledDialog
 import com.xiamu.baselibs.base.BaseVmActivity
-import com.xiamu.baselibs.util.toast
-import com.xiamu.wanandroid.Constant.AppConstant
+import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.LoginBinding
 import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel

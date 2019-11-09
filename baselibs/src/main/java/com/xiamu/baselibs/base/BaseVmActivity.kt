@@ -25,8 +25,8 @@ abstract class BaseVmActivity<DB : ViewDataBinding, VM: BaseViewModel> : AppComp
         mBinding = DataBindingUtil.setContentView(this, getLayoutResId())
         initVM()
         startObserve()
-        initView()
         initData()
+        initView()
     }
 
     abstract fun getLayoutResId() : Int

@@ -5,10 +5,9 @@ import androidx.lifecycle.Observer
 import com.hss01248.dialog.StyledDialog
 import com.xiamu.baselibs.base.BaseVmActivity
 import com.xiamu.baselibs.util.toast
-import com.xiamu.wanandroid.Constant.AppConstant
+import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.LoginViewmodelBinding
-import com.xiamu.wanandroid.mvvm.model.repository.LoginModel
 import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel
 import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_register.*

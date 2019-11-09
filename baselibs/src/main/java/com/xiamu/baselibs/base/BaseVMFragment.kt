@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
@@ -15,17 +16,32 @@ import com.xiamu.baselibs.mvvm.IViewModel
 /**
  * Created by zhengxiaobo in 2019-10-28
  */
-abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IFragment{
+abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
 
     /**
-     * 是否可见，用于懒加载
+     * 视图是否加载完毕
      */
-    var mVisible: Boolean = false
+    private var isViewPrepare = false
     /**
-     * 是否第一次加载，用于懒加载
+     * 数据是否加载过了
      */
-    var mFirst: Boolean = true
-    var mRootView: View?= null
+    private var hasLoadData = false
+
+    /**
+     * 懒加载
+     */
+    abstract fun lazyLoad()
+
+    /**
+     * 初始化 View
+     */
+    abstract fun initView(view: View)
+
+    /**
+     * 加载布局
+     */
+    @LayoutRes
+    abstract fun attachLayoutRes(): Int
 
     lateinit var mViewModel: VM
 
@@ -35,16 +51,14 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IFragment{
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initVM()
-        mRootView = initView(inflater, container, savedInstanceState)
-        if (mVisible && mFirst){
-            onFragmentVisibleChange(true)
-        }
-        return mRootView
+        return inflater.inflate(attachLayoutRes(), null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData(savedInstanceState)
+        isViewPrepare = true
+        initView(view)
+        lazyLoadDataIfPrepared()
         startObserve()
     }
 
@@ -66,28 +80,21 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IFragment{
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        mVisible = isVisibleToUser
-        if (mRootView == null)
-            return
-        //可见，并且首次加载时才调用
-        onFragmentVisibleChange(mVisible && mFirst)
+        if (isVisibleToUser) {
+            lazyLoadDataIfPrepared()
+        }
     }
 
-    /**
-     * 当前 Fragment 可见状态发生变化时会回调该方法。
-     * 如果当前 Fragment 是第一次加载，等待 onCreateView 后才会回调该方法，
-     * 其它情况回调时机跟 {@link #setUserVisibleHint(boolean)}一致
-     * 在该回调方法中你可以做一些加载数据操作，甚至是控件的操作.
-     *
-     * @param isVisible true  不可见 -> 可见
-     *                  false 可见  -> 不可见
-     */
-    fun onFragmentVisibleChange(isVisible: Boolean){}
+    private fun lazyLoadDataIfPrepared() {
+        if (userVisibleHint && isViewPrepare && !hasLoadData) {
+            lazyLoad()
+            hasLoadData = true
+        }
+    }
 
 
     override fun onDestroy() {
         lifecycle.removeObserver(mViewModel)
-        this.mRootView = null
         super.onDestroy()
     }
 

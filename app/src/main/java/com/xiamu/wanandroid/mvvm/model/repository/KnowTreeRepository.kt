@@ -18,8 +18,8 @@ class KnowTreeRepository : BaseModel(){
         return apiCall{ WanRetrofitClient.service.getTreeData()}
     }
 
-    suspend fun getTreeListData(id:Int): WanResponse<TreeDetailBean>{
-        return apiCall { WanRetrofitClient.service.getTreeListData(id) }
+    suspend fun getTreeListData(page: Int, id:Int): WanResponse<TreeDetailBean>{
+        return apiCall { WanRetrofitClient.service.getTreeListData(page, id) }
     }
 
 

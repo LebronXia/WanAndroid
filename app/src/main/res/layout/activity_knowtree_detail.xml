@@ -5,6 +5,10 @@
 
     <data class="KnowTreeBinding">
 
+        <variable
+            name="viewmodel"
+            type="com.xiamu.wanandroid.mvvm.viewmodel.TreeViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

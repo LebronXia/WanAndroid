@@ -26,6 +26,7 @@
 
         <activity android:name=".mvvm.view.activity.LoginActivity" />
         <activity android:name=".mvvm.view.activity.RegisterActivity" />
+        <activity android:name=".mvvm.view.activity.KnowTreeDetailActivity"/>
 
     </application>
 
