@@ -28,9 +28,10 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
     private var hasLoadData = false
 
     /**
-     * 懒加载
+     * 加载布局
      */
-    abstract fun lazyLoad()
+    @LayoutRes
+    abstract fun attachLayoutRes(): Int
 
     /**
      * 初始化 View
@@ -38,10 +39,9 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
     abstract fun initView(view: View)
 
     /**
-     * 加载布局
+     * 懒加载
      */
-    @LayoutRes
-    abstract fun attachLayoutRes(): Int
+    abstract fun lazyLoad()
 
     lateinit var mViewModel: VM
 

@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.text.TextUtils"/>
         <variable
             name="treeItemData"
             type="com.xiamu.wanandroid.mvvm.model.entry.TreeItemData" />
@@ -32,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp_12"
-                android:text="@{treeItemData.shareUser}"
+                android:text="@{TextUtils.isEmpty(treeItemData.shareUser) ? treeItemData.author : treeItemData.shareUser }"
                 tools:text="作者"
                 android:textColor="@color/item_tag"
                 app:layout_constraintTop_toTopOf="parent"

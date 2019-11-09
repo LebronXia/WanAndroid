@@ -9,14 +9,14 @@ import com.xiamu.wanandroid.mvvm.model.entry.TreeDetailBean
 /**
  * Created by zhengxiaobo in 2019-11-09
  */
-class WxArticleRepository : BaseModel(){
 
-    suspend fun getWxArticles(): WanResponse<List<TreeBean>>{
-        return apiCall{ WanRetrofitClient.service.getWxArtileList()}
+class ProjectRepository : BaseModel(){
+
+    suspend fun getProjectTree(): WanResponse<List<TreeBean>>{
+        return apiCall{ WanRetrofitClient.service.getProjectTree()}
     }
 
-    suspend fun getWxArticleDetail(page: Int, id: Int): WanResponse<TreeDetailBean>{
-        return apiCall { WanRetrofitClient.service.getWxArticleDetail(page, id) }
+    suspend fun getProjectList(page: Int, id:Int): WanResponse<TreeDetailBean>{
+        return apiCall { WanRetrofitClient.service.getProjectList(page, id) }
     }
-
 }

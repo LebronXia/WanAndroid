@@ -44,4 +44,16 @@ interface WanService {
     @GET("/wxarticle/chapters/json")
     suspend fun getWxArtileList(): WanResponse<List<TreeBean>>
 
+    //查看某个公众号历史数据
+    @GET("https://wanandroid.com/wxarticle/list/{page}/{id}/json")
+    suspend fun getWxArticleDetail(@Path("page")page : Int, @Path("id") id: Int): WanResponse<TreeDetailBean>
+
+    //项目
+    @GET("/project/tree/json")
+    suspend fun getProjectTree(): WanResponse<List<TreeBean>>
+
+    //项目列表数据
+    @GET("/project/list/{page}/json")
+    suspend fun getProjectList(@Path("page") page: Int, @Query("cid")id: Int): WanResponse<TreeDetailBean>
+
 }

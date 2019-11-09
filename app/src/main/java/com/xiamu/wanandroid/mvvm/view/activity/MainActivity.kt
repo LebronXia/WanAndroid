@@ -12,6 +12,8 @@ import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.MainBinding
 import com.xiamu.wanandroid.mvvm.view.fragment.HomeFragment
 import com.xiamu.wanandroid.mvvm.view.fragment.KnowledgeTreeFragment
+import com.xiamu.wanandroid.mvvm.view.fragment.ProjectFragment
+import com.xiamu.wanandroid.mvvm.view.fragment.WxArticleFragment
 import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -31,8 +33,8 @@ class MainActivity : BaseActivity<MainBinding>() {
     private var mHomeFragment: HomeFragment?= null
     private var mKnowledgeTreeFragment: KnowledgeTreeFragment ?= null
     private var mNavigationFragment: KnowledgeTreeFragment ?= null
-    private var mProjectFragment: KnowledgeTreeFragment ?= null
-    private var mWeChatFragment: KnowledgeTreeFragment ?= null
+    private var mProjectFragment: ProjectFragment ?= null
+    private var mWeChatFragment: WxArticleFragment ?= null
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
@@ -115,7 +117,7 @@ class MainActivity : BaseActivity<MainBinding>() {
             -> {
                 toolbar.title = getString(R.string.project)
                 if (mProjectFragment == null) {
-                    mProjectFragment = KnowledgeTreeFragment()
+                    mProjectFragment = ProjectFragment()
                     transaction.add(R.id.container, mProjectFragment!!, "project")
                 } else {
                     transaction.show(mProjectFragment!!)
@@ -125,7 +127,7 @@ class MainActivity : BaseActivity<MainBinding>() {
             -> {
                 toolbar.title = getString(R.string.wechat)
                 if (mWeChatFragment == null) {
-                    mWeChatFragment = KnowledgeTreeFragment()
+                    mWeChatFragment = WxArticleFragment()
                     transaction.add(R.id.container, mWeChatFragment!!, "wechat")
                 } else {
                     transaction.show(mWeChatFragment!!)

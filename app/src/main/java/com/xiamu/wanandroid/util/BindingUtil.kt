@@ -1,7 +1,9 @@
 package com.xiamu.wanandroid.util
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.xiamu.wanandroid.mvvm.model.entry.TreeBean
 
 /**
@@ -19,4 +21,11 @@ object BindingUtil {
             view.setText(des)
         }
     }
+
+    @BindingAdapter("app:imageUrl")
+    @JvmStatic fun loadImage(imageView: ImageView, url: String){
+        ImageLoder.load(imageView.context, url, imageView);
+    }
+
+
 }
