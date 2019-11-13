@@ -56,4 +56,8 @@ interface WanService {
     @GET("/project/list/{page}/json")
     suspend fun getProjectList(@Path("page") page: Int, @Query("cid")id: Int): WanResponse<TreeDetailBean>
 
+    //导航
+    @GET("/navi/json")
+    suspend fun getNaviData(): WanResponse<List<NaviBean>>
+
 }

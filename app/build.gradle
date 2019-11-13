@@ -48,6 +48,8 @@ dependencies {
     implementation rootProject.ext.dependencies["glide-loader-okhttp3"]
     implementation rootProject.ext.dependencies["youth_banner"]
     implementation rootProject.ext.dependencies["dialog"]
+    implementation rootProject.ext.dependencies["VerticalTabLayout"]
+    implementation rootProject.ext.dependencies["flowlayout"]
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }

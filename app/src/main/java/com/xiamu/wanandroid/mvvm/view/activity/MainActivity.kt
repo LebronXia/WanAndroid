@@ -10,10 +10,7 @@ import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.MainBinding
-import com.xiamu.wanandroid.mvvm.view.fragment.HomeFragment
-import com.xiamu.wanandroid.mvvm.view.fragment.KnowledgeTreeFragment
-import com.xiamu.wanandroid.mvvm.view.fragment.ProjectFragment
-import com.xiamu.wanandroid.mvvm.view.fragment.WxArticleFragment
+import com.xiamu.wanandroid.mvvm.view.fragment.*
 import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -32,7 +29,7 @@ class MainActivity : BaseActivity<MainBinding>() {
 
     private var mHomeFragment: HomeFragment?= null
     private var mKnowledgeTreeFragment: KnowledgeTreeFragment ?= null
-    private var mNavigationFragment: KnowledgeTreeFragment ?= null
+    private var mNavigationFragment: NaviFragment?= null
     private var mProjectFragment: ProjectFragment ?= null
     private var mWeChatFragment: WxArticleFragment ?= null
 
@@ -107,7 +104,7 @@ class MainActivity : BaseActivity<MainBinding>() {
             -> {
                 toolbar.title = getString(R.string.navigation)
                 if (mNavigationFragment == null) {
-                    mNavigationFragment = KnowledgeTreeFragment()
+                    mNavigationFragment = NaviFragment()
                     transaction.add(R.id.container, mNavigationFragment!!, "navigation")
                 } else {
                     transaction.show(mNavigationFragment!!)
