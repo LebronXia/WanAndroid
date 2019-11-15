@@ -1,6 +1,8 @@
 package com.xiamu.wanandroid.mvvm.view.activity
 
 import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,9 +44,15 @@ class MainActivity : BaseActivity<MainBinding>() {
         mBinding.bottomNav.run {
             setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         }
+        initToolBar()
         initDrawerLayout()
         initNavView()
         showFragment(mIndex)
+    }
+
+    private fun initToolBar() {
+
+
     }
 
     private fun initNavView() {
@@ -70,6 +78,22 @@ class MainActivity : BaseActivity<MainBinding>() {
     override fun initData() {
 
     }
+//
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.menu_activity_main, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item?.itemId){
+//            R.id.action_settings -> {
+//               // startActivity(Intent())
+//                return true
+//            }
+//
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
     /**
      * 展示Fragment

@@ -36,5 +36,10 @@
     <string name="confirm_password_not_empty">确认密码不能为空</string>
     <string name="password_cannot_match">两个密码不相同</string>
 
+    <!--search-->
+    <string name="search_hot">热门搜索</string>
+    <string name="search_history">热门历史</string>
+    <string name="search_clear">清空</string>
+
 
 </resources>

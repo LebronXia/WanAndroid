@@ -60,4 +60,8 @@ interface WanService {
     @GET("/navi/json")
     suspend fun getNaviData(): WanResponse<List<NaviBean>>
 
+    //搜索热词
+    @GET("/hotkey/json")
+    suspend fun getHotSearch(): WanResponse<List<HotKey>>
+
 }

@@ -14,9 +14,12 @@
     <color name="item_time">@color/Grey</color>
     <color name="item_des">@color/Grey</color>
     <color name="arrow_color">@color/Grey700</color>
+    <color name="item_flow_layout_bg">@color/Grey200</color>
 
-    <color name="Grey600">#757575</color>
     <color name="Grey700">#616161</color>
+    <color name="Grey600">#757575</color>
+    <color name="Grey200">#EEEEEE</color>
+    <color name="Grey300">#E0E0E0</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

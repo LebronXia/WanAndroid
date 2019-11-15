@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dp_5"
+    android:clickable="true"
+    android:focusable="true"
+    tools:text="哈哈哈"
+    android:background="@drawable/selector_flow_item"
+    android:paddingTop="@dimen/dp_6"
+    android:paddingBottom="@dimen/dp_6"
+    android:paddingStart="@dimen/dp_10"
+    android:paddingEnd="@dimen/dp_10"
+    android:textColor="@android:color/primary_text_light"
+
+    >
+
+</TextView>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cxz.wanandroid.widget.RecyclerViewItemDecoration
 import com.hss01248.dialog.StyledDialog.context
 import com.xiamu.baselibs.base.BaseVMFragment
+import com.xiamu.baselibs.util.dp2px
 import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.HomeVieModelBinding
@@ -75,6 +76,7 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
     private fun initBanner() {
         bannerView = layoutInflater.inflate(R.layout.item_banner, null) as Banner?
         bannerView?.run {
+            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(230))
             setImageLoader(GlideImageLoader())
             setIndicatorGravity(BannerConfig.CENTER)
             setOnBannerListener {

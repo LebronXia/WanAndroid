@@ -35,7 +35,7 @@
                 android:id="@+id/tv_article_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="置顶"
+                android:text="置顶"
                 android:textSize="@dimen/sp_10"
                 android:textColor="@color/item_tag"
                 android:background="@drawable/bg_refresh"
@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_article_new"
                 app:layout_constraintTop_toTopOf="parent"
-                android:visibility="@{article.fresh ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="gone"
                 />
 
             <TextView
@@ -54,10 +54,11 @@
                 android:textColor="@color/item_tag"
                 android:background="@drawable/bg_refresh"
                 android:padding="@dimen/dp_3"
-                tools:text="新"
+                android:text="新"
                 app:layout_constraintStart_toEndOf="@+id/tv_article_top"
                 android:layout_marginLeft="@dimen/dp_6"
                 app:layout_constraintTop_toTopOf="@id/tv_article_top"
+                android:visibility="@{article.fresh ? View.VISIBLE : View.GONE}"
                 />
 
             <TextView
