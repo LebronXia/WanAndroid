@@ -1,22 +1,16 @@
 package com.xiamu.baselibs.base
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.xiamu.baselibs.mvvm.BaseViewModel
-import com.xiamu.baselibs.mvvm.IViewModel
-import java.util.prefs.Preferences
 
 /**
- * Created by zhengxiaobo in 2019-10-28
+ * Created by zhengxiaobo in 2019-11-18
  */
-abstract class BaseVmActivity<DB : ViewDataBinding, VM: BaseViewModel> : BaseActivity() {
+abstract class BaseModelActivity<VM: BaseViewModel> : BaseActivity(){
 
-    lateinit var mBinding : DB
     lateinit var mViewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,16 +18,11 @@ abstract class BaseVmActivity<DB : ViewDataBinding, VM: BaseViewModel> : BaseAct
         startObserve()
     }
 
-    override fun initVM() {
+     override fun initVM() {
         providerVMClass()?.let {
             mViewModel = ViewModelProvider(this).get(it)
             mViewModel.let(lifecycle::addObserver)
         }
-    }
-
-    override fun initBinding() {
-        super.initBinding()
-        mBinding = DataBindingUtil.setContentView(this, getLayoutResId())
     }
 
     open fun providerVMClass(): Class<VM>? = null
@@ -53,4 +42,3 @@ abstract class BaseVmActivity<DB : ViewDataBinding, VM: BaseViewModel> : BaseAct
     }
 
 }
-

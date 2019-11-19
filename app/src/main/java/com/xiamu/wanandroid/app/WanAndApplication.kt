@@ -6,6 +6,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.multidex.MultiDexApplication
 import com.hss01248.dialog.MyActyManager
 import com.hss01248.dialog.StyledDialog
 import kotlin.properties.Delegates
@@ -15,7 +16,7 @@ import kotlin.properties.Delegates
 /**
  * Created by zhengxiaobo in 2019-10-30
  */
-class WanAndApplication: Application() {
+class WanAndApplication: MultiDexApplication() {
 
     companion object{
         private val TAG = "App"

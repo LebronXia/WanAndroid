@@ -41,5 +41,7 @@
     <string name="search_history">热门历史</string>
     <string name="search_clear">清空</string>
 
+    <string name="search_tint">搜索更多</string>
+
 
 </resources>

@@ -3,6 +3,7 @@ package com.xiamu.wanandroid.mvvm.model.repository
 import com.xiamu.baselibs.base.WanResponse
 import com.xiamu.baselibs.mvvm.BaseModel
 import com.xiamu.wanandroid.mvvm.model.api.WanRetrofitClient
+import com.xiamu.wanandroid.mvvm.model.entry.ArticleList
 import com.xiamu.wanandroid.mvvm.model.entry.HotKey
 import com.xiamu.wanandroid.mvvm.model.entry.TreeBean
 
@@ -13,5 +14,9 @@ class SearchRepository : BaseModel(){
 
     suspend fun getSearchHotKey(): WanResponse<List<HotKey>>{
         return apiCall{ WanRetrofitClient.service.getHotSearch()}
+    }
+
+    suspend fun getSearchResult(page: Int, key: String): WanResponse<ArticleList>{
+        return apiCall{WanRetrofitClient.service.queryBySearchKey(page, key)}
     }
 }

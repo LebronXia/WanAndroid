@@ -16,6 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
 
@@ -28,10 +30,18 @@ android {
     dataBinding{
         enabled true
     }
+
+    //使用生成文件
+    kapt {
+        generateStubs = true
+    }
 }
 
 dependencies {
+    def room_version = "2.0.0-beta01"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:multidex:1.0.1'
     implementation project(':baselibs')
     implementation rootProject.ext.dependencies["design"]
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -52,6 +62,13 @@ dependencies {
     implementation rootProject.ext.dependencies["flowlayout"]
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+    //room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
 }
 
 kapt {

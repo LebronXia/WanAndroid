@@ -16,4 +16,5 @@ object AppConstant{
     const val EXTRA_TREE_NAME = "extra_treename"
     const val EXTRA_TREE_DATA = "extra_treedata"
     const val EXTRA_TREE_CID = "extra_treecid"
+    const val EXTRA_SEARCH_KEY = "extra_searchkey"
 }

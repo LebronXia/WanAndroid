@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="searchHistory"
+            type="com.xiamu.wanandroid.mvvm.model.entry.SearchHistoryBean" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/viewBackground"
+        app:cardCornerRadius="@dimen/dp_1"
+        app:cardElevation="@dimen/dp_1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_12"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Grey600"
+                tools:text="搜索"
+                android:text="@{searchHistory.key}"
+                android:textSize="@dimen/sp_12"
+                />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_clear_grey_24dp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -28,6 +28,8 @@
         <activity android:name=".mvvm.view.activity.RegisterActivity" />
         <activity android:name=".mvvm.view.activity.KnowTreeDetailActivity"/>
 
+        <activity android:name=".mvvm.view.activity.SearchActivity"/>
+        <activity android:name=".mvvm.view.activity.SearchResultActivity"/>
     </application>
 
 </manifest>

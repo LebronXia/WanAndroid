@@ -17,7 +17,7 @@ import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class MainActivity : BaseActivity<MainBinding>() {
+class MainActivity: BaseActivity() {
 
     private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
 
@@ -41,7 +41,7 @@ class MainActivity : BaseActivity<MainBinding>() {
 
     override fun initView() {
 
-        mBinding.bottomNav.run {
+        bottom_nav.run {
             setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         }
         initToolBar()
@@ -51,7 +51,9 @@ class MainActivity : BaseActivity<MainBinding>() {
     }
 
     private fun initToolBar() {
-
+        toolbar.run {
+            setSupportActionBar(this)
+        }
 
     }
 
@@ -78,22 +80,22 @@ class MainActivity : BaseActivity<MainBinding>() {
     override fun initData() {
 
     }
-//
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_activity_main, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item?.itemId){
-//            R.id.action_settings -> {
-//               // startActivity(Intent())
-//                return true
-//            }
-//
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.menu_search -> {
+                startActivity(Intent(this, SearchActivity::class.java))
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     /**
      * 展示Fragment

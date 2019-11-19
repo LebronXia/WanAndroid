@@ -64,4 +64,9 @@ interface WanService {
     @GET("/hotkey/json")
     suspend fun getHotSearch(): WanResponse<List<HotKey>>
 
+    //搜索
+    @POST("/article/query/{page}/json")
+    @FormUrlEncoded
+    suspend fun queryBySearchKey(@Path("page") page: Int, @Field("k") key: String): WanResponse<ArticleList>
+
 }
