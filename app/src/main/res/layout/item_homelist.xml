@@ -128,7 +128,7 @@
                     android:id="@+id/iv_article_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@{article.zan == 0 ? @drawable/ic_like_not : @drawable/ic_like}"/>
+                    android:src="@{article.collect ? @drawable/ic_like : @drawable/ic_like_not}"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

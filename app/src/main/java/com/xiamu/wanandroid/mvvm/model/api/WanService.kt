@@ -69,4 +69,19 @@ interface WanService {
     @FormUrlEncoded
     suspend fun queryBySearchKey(@Path("page") page: Int, @Field("k") key: String): WanResponse<ArticleList>
 
+    //收藏文章列表
+    @GET("/lg/collect/list/{page}/json")
+    suspend fun getCollectList(@Path("page")page: Int): WanResponse<ArticleList>
+
+    //收藏站内文章
+    @POST("/lg/collect/{id}/json")
+    suspend fun collectArticle(@Path("id")id: Int): WanResponse<Any>
+
+    //文章列表中取消收藏
+    @POST("/lg/uncollect_originId/{id}/json")
+    suspend fun unCollectArticle(@Path("id")id: Int): WanResponse<Any>
+
+    //我的收藏页面取消收藏
+    @POST("/lg/uncollect/{id}/json")
+    suspend fun removeCollectArticle(@Path("id")id: Int): WanResponse<Any>
 }

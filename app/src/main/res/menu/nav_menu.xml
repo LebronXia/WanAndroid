@@ -9,6 +9,18 @@
             android:icon="@drawable/ic_score_white_24dp"
             android:title="@string/nav_my_score"
             app:actionViewClass="android.widget.TextView" />
+
+        <item
+            android:id="@+id/nav_collect"
+            android:icon="@drawable/ic_score_white_24dp"
+            android:title="@string/nav_collect"
+            app:actionViewClass="android.widget.TextView" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_score_white_24dp"
+            android:title="@string/nav_logout"
+            app:actionViewClass="android.widget.TextView" />
     </group>
 
 </menu>

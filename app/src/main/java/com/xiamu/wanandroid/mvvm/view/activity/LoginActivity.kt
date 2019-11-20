@@ -4,13 +4,16 @@ import android.content.Intent
 import androidx.lifecycle.Observer
 import com.hss01248.dialog.StyledDialog
 import com.xiamu.baselibs.base.BaseVmActivity
+import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.LoginBinding
+import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
 import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel
 import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.simple.eventbus.EventBus
 
 /**
  * Created by zhengxiaobo in 2019-11-03
@@ -60,15 +63,18 @@ class LoginActivity : BaseVmActivity<LoginBinding, LoginViewModel>() {
                     showLoading()
                 }
 
-                it.showSuccess?.let {
+                it.showSuccess?.let { loginBean ->
                     isLogin = true
                     hideLoading()
-                    _user = it.username
-                    _password = it.password
+                    EventBus.getDefault().post(LoginEvent(isLogin), "main")
+                    _user = loginBean.username
+                    _password = loginBean.password
                     finish()
+
                 }
 
                 it.showError?.let {
+                    toast(it.toString())
                     hideLoading()
                 }
 

@@ -3,6 +3,7 @@ package com.xiamu.wanandroid.mvvm.view.activity
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,10 +13,13 @@ import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.MainBinding
+import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
 import com.xiamu.wanandroid.mvvm.view.fragment.*
 import com.xiamu.wanandroid.util.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.simple.eventbus.EventBus
+import org.simple.eventbus.Subscriber
 
 class MainActivity: BaseActivity() {
 
@@ -35,12 +39,15 @@ class MainActivity: BaseActivity() {
     private var mProjectFragment: ProjectFragment ?= null
     private var mWeChatFragment: WxArticleFragment ?= null
 
+    //nav_view
+    private var tv_tologin: TextView ?= null
+
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
     }
 
     override fun initView() {
-
+        EventBus.getDefault().register(this)
         bottom_nav.run {
             setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         }
@@ -60,6 +67,12 @@ class MainActivity: BaseActivity() {
     private fun initNavView() {
         nav_view.run {
             setNavigationItemSelectedListener (onDrawerNavigationItemSelectedListener)
+            tv_tologin = getHeaderView(0).findViewById(R.id.tv_tologin)
+        }
+
+        tv_tologin?.setOnClickListener {
+            if (!isLogin)
+                goLogin()
         }
 
     }
@@ -79,6 +92,12 @@ class MainActivity: BaseActivity() {
 
     override fun initData() {
 
+    }
+
+    @Subscriber(tag = "main")
+    private fun afterLoginUpdateUI(event: LoginEvent){
+
+        toast("接收到登录数据")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -205,7 +224,8 @@ class MainActivity: BaseActivity() {
             when(item.itemId){
                 R.id.nav_score -> {
                     if (isLogin){
-                        toast("你已登陆成功")
+                        startActivity(Intent(this@MainActivity, CollectActivity::class.java))
+                        //toast("你已登陆成功")
                     } else {
                         toast(resources.getString(R.string.please_login))
                         goLogin()
@@ -217,6 +237,11 @@ class MainActivity: BaseActivity() {
 
     private fun goLogin(){
         startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
     }
 
 }

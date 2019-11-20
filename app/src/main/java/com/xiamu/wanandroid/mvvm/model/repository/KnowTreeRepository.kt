@@ -22,6 +22,4 @@ class KnowTreeRepository : BaseModel(){
         return apiCall { WanRetrofitClient.service.getTreeListData(page, id) }
     }
 
-
-
 }

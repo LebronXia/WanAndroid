@@ -69,6 +69,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:$room_version"
+
+    //eventbus
+    implementation rootProject.ext.dependencies["androideventbus"]
 }
 
 kapt {

@@ -56,13 +56,13 @@ ext {
 
             //eventbus
             "eventbus"                  : "org.greenrobot:eventbus:3.0.0",
-            "androideventbus"          : "org.simple:androideventbus:1.0.5.1",
+            "androideventbus"           : "org.simple:androideventbus:1.0.5.1",
 
             //network
             "retrofit"                  : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",
             "retrofit-converter-gson"   : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",
             "retrofit-adapter-rxjava2"  : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.retrofit}",
-            "okhttp3"                    : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp}",
+            "okhttp3"                   : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp}",
             "okhttp-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${dependVersion.okhttp}",
             "retrofit-url_manager"      : "me.jessyan:retrofit-url-manager:1.4.0",
             "gson"                      : "com.google.code.gson:gson:2.8.0",

@@ -7,37 +7,34 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cxz.wanandroid.widget.RecyclerViewItemDecoration
 import com.xiamu.baselibs.base.BaseModelActivity
 import com.xiamu.wanandroid.R
-import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.mvvm.view.adapter.HomeArticleAdapter
+import com.xiamu.wanandroid.mvvm.viewmodel.CollectViewModel
 import com.xiamu.wanandroid.mvvm.viewmodel.SearchViewModel
 import com.xiamu.wanandroid.util.onNetError
 import kotlinx.android.synthetic.main.activity_knowtree_detail.*
 import kotlinx.android.synthetic.main.fragment_refresh_layout.*
 
 /**
- * Created by zhengxiaobo in 2019-11-18
+ * Created by zhengxiaobo in 2019-11-19
  */
-class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
+class CollectActivity: BaseModelActivity<CollectViewModel>(){
 
-    private lateinit var key: String
     private var currentPage = 0
 
     private val homeArticleAdapter: HomeArticleAdapter by lazy{ HomeArticleAdapter(R.layout.item_homelist, null) }
 
-    override fun providerVMClass(): Class<SearchViewModel>? = SearchViewModel::class.java
-
     private val recyclerViewItemDecoration by lazy {
-        RecyclerViewItemDecoration(this@SearchResultActivity, LinearLayoutManager.VERTICAL)
+        RecyclerViewItemDecoration(this@CollectActivity, LinearLayoutManager.VERTICAL)
     }
+
+    override fun providerVMClass(): Class<CollectViewModel>? = CollectViewModel::class.java
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_refresh_layout
     }
 
     override fun initView() {
-
         toolbar.run{
-            title = key
             setSupportActionBar(this)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener {
@@ -58,15 +55,12 @@ class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
 
         homeArticleAdapter.run {
             setOnLoadMoreListener {
-                mViewModel.getSearchResult(currentPage, key)
+                mViewModel.getCollectList(currentPage)
             }
         }
     }
 
     override fun initData() {
-        intent.run {
-            key = getStringExtra(AppConstant.EXTRA_SEARCH_KEY)
-        }
         refresh()
     }
 
@@ -74,12 +68,13 @@ class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
         currentPage = 0
         refreshlayout.isRefreshing = true
         homeArticleAdapter.setEnableLoadMore(false)
-        mViewModel.getSearchResult(currentPage, key)
+        mViewModel.getCollectList(currentPage)
     }
 
     override fun startObserve() {
         super.startObserve()
-        mViewModel.mSearchResultState.observe(this, Observer {
+
+        mViewModel.collectState.observe(this, Observer {
 
             it?.let {
 
@@ -107,8 +102,9 @@ class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
         super.onError(e)
         onNetError(e){
             refreshlayout.isRefreshing = false
-            Log.d("SearchResultActivity", e.message)
+            Log.d("CollectActivity", e.message)
         }
     }
+
 
 }

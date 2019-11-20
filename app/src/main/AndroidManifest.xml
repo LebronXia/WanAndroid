@@ -30,6 +30,7 @@
 
         <activity android:name=".mvvm.view.activity.SearchActivity"/>
         <activity android:name=".mvvm.view.activity.SearchResultActivity"/>
+        <activity android:name=".mvvm.view.activity.CollectActivity"/>
     </application>
 
 </manifest>
