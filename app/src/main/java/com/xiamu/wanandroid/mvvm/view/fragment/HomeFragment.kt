@@ -1,5 +1,6 @@
 package com.xiamu.wanandroid.mvvm.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,16 +10,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
 import com.cxz.wanandroid.widget.RecyclerViewItemDecoration
 import com.hss01248.dialog.StyledDialog.context
 import com.xiamu.baselibs.base.BaseVMFragment
 import com.xiamu.baselibs.util.dp2px
 import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.R
+import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.databinding.HomeVieModelBinding
+import com.xiamu.wanandroid.mvvm.view.activity.LoginActivity
 import com.xiamu.wanandroid.mvvm.view.adapter.HomeArticleAdapter
 import com.xiamu.wanandroid.mvvm.viewmodel.MainHomeViewModel
 import com.xiamu.wanandroid.util.GlideImageLoader
+import com.xiamu.wanandroid.util.Preference
 import com.xiamu.wanandroid.util.onNetError
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
@@ -28,6 +34,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Created by zhengxiaobo in 2019-10-29
  */
 class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
+
+    private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
 
     private var isFresh = true
     private var bannerView: Banner ?= null
@@ -100,6 +108,7 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
             setOnLoadMoreListener({
                 mViewModel.getHomeArticleList(false)
             }, recycleview)
+            onItemChildClickListener = this@HomeFragment.onItemChildClickListener
             setOnItemClickListener{ _, _, position ->
                 context?.toast("你点击了波泥河~~")
             }
@@ -110,6 +119,36 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
         isFresh = true
         homeArticleAdapter.setEnableLoadMore(false)
         mViewModel.getHomeArticleList(true)
+    }
+
+    private val onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener{ _, view: View, position: Int ->
+
+        if (homeArticleAdapter.data.size != 0){
+            val item = homeArticleAdapter.getItem(position)
+
+            when(view.id){
+                R.id.iv_article_like -> {
+                    if (isLogin){
+                        item?.let {
+                            val collect = item.collect
+                            item.collect = !collect
+
+                            homeArticleAdapter.setData(position, item)
+
+                            if (collect){
+                                mViewModel.unCollectArticle(item.id)
+                            } else {
+                                mViewModel.collectArticle(item.id)
+                            }
+                        }
+                    } else {
+                        startActivity(Intent(activity, LoginActivity::class.java))
+                        activity?.toast(resources.getString(R.string.login_please))
+                    }
+
+                }
+            }
+        }
     }
 
     override fun startObserve() {
@@ -151,6 +190,13 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
                     context?.toast(it.toString())
                     homeArticleAdapter.loadMoreComplete()
 
+                }
+            })
+
+            collectAction.observe(this@HomeFragment, Observer {
+
+                it?.let {
+                    activity?.toast(it.toString())
                 }
             })
         }

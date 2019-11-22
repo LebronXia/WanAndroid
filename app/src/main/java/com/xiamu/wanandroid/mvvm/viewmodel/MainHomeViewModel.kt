@@ -16,7 +16,7 @@ import java.io.IOException
 /**
  * Created by zhengxiaobo in 2019-10-29
  */
-class MainHomeViewModel: BaseViewModel() {
+class MainHomeViewModel: CollectViewModel() {
 
     //委托
     private val homeModel by lazy { MainHomeModel() }

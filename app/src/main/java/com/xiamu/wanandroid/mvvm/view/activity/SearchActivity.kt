@@ -180,7 +180,6 @@ class SearchActivity : BaseVmActivity<SearchViewModelBinding, SearchViewModel>()
                 R.id.iv_delete -> {
                     item?.let { mViewModel.removeHistory(it) }
                     searchHistoryAdapter.remove(position)
-                    toast("点击删除")
                 }
             }
         }

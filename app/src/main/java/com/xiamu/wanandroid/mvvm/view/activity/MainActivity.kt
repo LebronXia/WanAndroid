@@ -222,7 +222,7 @@ class MainActivity: BaseActivity() {
     private val onDrawerNavigationItemSelectedListener =
         NavigationView.OnNavigationItemSelectedListener {item ->
             when(item.itemId){
-                R.id.nav_score -> {
+                R.id.nav_collect -> {
                     if (isLogin){
                         startActivity(Intent(this@MainActivity, CollectActivity::class.java))
                         //toast("你已登陆成功")

@@ -14,5 +14,15 @@ class CollectRepository : BaseModel(){
         return apiCall{WanRetrofitClient.service.getCollectList(page)}
     }
 
+    suspend fun collectArticle(id: Int): WanResponse<Any>{
+        return apiCall{WanRetrofitClient.service.collectArticle(id)}
+    }
 
+    suspend fun unCollectArticle(id: Int): WanResponse<Any>{
+        return apiCall { WanRetrofitClient.service.unCollectArticle(id) }
+    }
+
+    suspend fun removeCollectArticle(id: Int): WanResponse<Any>{
+        return apiCall{WanRetrofitClient.service.removeCollectArticle(id)}
+    }
 }
