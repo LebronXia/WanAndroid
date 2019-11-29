@@ -44,8 +44,9 @@
     <string name="search_hot">热门搜索</string>
     <string name="search_history">热门历史</string>
     <string name="search_clear">清空</string>
-
     <string name="search_tint">搜索更多</string>
 
+    <!--web-->
+    <string name="web_isloading">正在加载</string>
 
 </resources>

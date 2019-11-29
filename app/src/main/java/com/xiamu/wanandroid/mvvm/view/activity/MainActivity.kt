@@ -1,29 +1,48 @@
 package com.xiamu.wanandroid.mvvm.view.activity
 
 import android.content.Intent
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.MenuItemCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.hss01248.dialog.StyledDialog
+import com.hss01248.dialog.interfaces.MyDialogListener
+import com.orhanobut.logger.Logger
 import com.xiamu.baselibs.base.BaseActivity
+import com.xiamu.baselibs.base.BaseModelActivity
+import com.xiamu.baselibs.base.BaseVMFragment
 import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.databinding.MainBinding
 import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
 import com.xiamu.wanandroid.mvvm.view.fragment.*
+import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel
+import com.xiamu.wanandroid.mvvm.viewmodel.MainViewModel
 import com.xiamu.wanandroid.util.Preference
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.simple.eventbus.EventBus
 import org.simple.eventbus.Subscriber
+import org.simple.eventbus.ThreadMode
 
-class MainActivity: BaseActivity() {
+class MainActivity: BaseModelActivity<MainViewModel>() {
 
     private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
+    var userName: String by Preference(AppConstant.USER_NAME, "")
 
     private val FRAGMENT_HOME = 0x01
     private val FRAGMENT_KNOWLEDGE = 0x02
@@ -41,6 +60,12 @@ class MainActivity: BaseActivity() {
 
     //nav_view
     private var tv_tologin: TextView ?= null
+    private var tv_user_grade: TextView ?= null
+    private var tv_user_rank: TextView ?= null
+    private var nav_score : TextView ?= null
+    private var nav_logout : MenuItem?= null
+
+    override fun providerVMClass(): Class<MainViewModel>? = MainViewModel::class.java
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
@@ -68,11 +93,20 @@ class MainActivity: BaseActivity() {
         nav_view.run {
             setNavigationItemSelectedListener (onDrawerNavigationItemSelectedListener)
             tv_tologin = getHeaderView(0).findViewById(R.id.tv_tologin)
+            tv_user_grade = getHeaderView(0).findViewById(R.id.tv_user_grade)
+            tv_user_rank = getHeaderView(0).findViewById(R.id.tv_user_rank)
+            nav_score = MenuItemCompat.getActionView(this.menu.findItem(R.id.nav_score)) as TextView
+            nav_score?.gravity = Gravity.CENTER_VERTICAL
+            nav_logout = this.menu.findItem(R.id.nav_logout)
+            nav_logout?.isVisible = isLogin
         }
 
-        tv_tologin?.setOnClickListener {
-            if (!isLogin)
-                goLogin()
+        tv_tologin?.run {
+            text = if (!isLogin) getString(R.string.login) else userName
+            setOnClickListener {
+                if (!isLogin)
+                    goLogin()
+            }
         }
 
     }
@@ -91,13 +125,57 @@ class MainActivity: BaseActivity() {
     }
 
     override fun initData() {
-
+        mViewModel.getCoinUserInfo()
     }
 
-    @Subscriber(tag = "main")
+    @Subscriber(mode = ThreadMode.MAIN , tag = "main")
     private fun afterLoginUpdateUI(event: LoginEvent){
+        if (event.isLogin){
+            toast("接收到登录数据")
+            tv_tologin?.text = userName
+            mViewModel.getCoinUserInfo()
+            mHomeFragment?.lazyLoad()
+            nav_logout?.isVisible = isLogin
+        } else {
+            tv_tologin?.text = resources.getString(R.string.login)
+            tv_user_grade?.text = "--"
+            tv_user_rank?.text = "--"
+            nav_logout?.isVisible = false
+            mHomeFragment?.lazyLoad()
+            nav_logout?.isVisible = isLogin
+        }
+    }
 
-        toast("接收到登录数据")
+    override fun startObserve() {
+        super.startObserve()
+
+        mViewModel.coinUserState.observe(this, Observer {
+
+            it?.let {
+                tv_user_grade?.text = it.level.toString()
+                tv_user_rank?.text = it.rank.toString()
+                nav_score?.text = it.coinCount.toString()
+            }
+        })
+
+        mViewModel.logotState.observe(this, Observer {
+
+            if (it){
+                GlobalScope.launch {
+                    withContext(Dispatchers.IO){
+                        Preference.clearPreference()
+                    }
+
+                    withContext(Dispatchers.Main){
+                        isLogin = false
+                        EventBus.getDefault().post(LoginEvent(false), "main")
+                    }
+
+                }
+
+            }
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -115,6 +193,7 @@ class MainActivity: BaseActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     /**
      * 展示Fragment
@@ -222,6 +301,9 @@ class MainActivity: BaseActivity() {
     private val onDrawerNavigationItemSelectedListener =
         NavigationView.OnNavigationItemSelectedListener {item ->
             when(item.itemId){
+                R.id.nav_score -> {
+
+                }
                 R.id.nav_collect -> {
                     if (isLogin){
                         startActivity(Intent(this@MainActivity, CollectActivity::class.java))
@@ -230,6 +312,19 @@ class MainActivity: BaseActivity() {
                         toast(resources.getString(R.string.please_login))
                         goLogin()
                     }
+                }
+                R.id.nav_logout -> {
+                    StyledDialog.buildMdAlert("", "确认退出登录", object : MyDialogListener() {
+                        override fun onSecond() {
+                        }
+
+                        override fun onFirst() {
+                            mViewModel.logot()
+                        }
+
+                    }).setBtnSize(14)
+                        .setBtnText("确定", "取消")
+                        .show()
                 }
             }
             return@OnNavigationItemSelectedListener  true

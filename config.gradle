@@ -115,6 +115,7 @@ ext {
             "smartRefreshHeader"        : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14",
             //垂直竖向的Android TabLayout
             "VerticalTabLayout"         : "q.rorbin:VerticalTabLayout:1.2.5",
+            "agentweb"                  : "com.just.agentweb:agentweb:4.1.2",
 
             //富文本
             "richtext"                  : "com.ms-square:expandableTextView:0.1.4",

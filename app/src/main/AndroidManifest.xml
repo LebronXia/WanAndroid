@@ -8,6 +8,13 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"></uses-permission>
+
     <application
         android:name=".app.WanAndApplication"
         android:allowBackup="true"
@@ -31,6 +38,7 @@
         <activity android:name=".mvvm.view.activity.SearchActivity"/>
         <activity android:name=".mvvm.view.activity.SearchResultActivity"/>
         <activity android:name=".mvvm.view.activity.CollectActivity"/>
+        <activity android:name=".mvvm.view.activity.WebActivity"/>
     </application>
 
 </manifest>

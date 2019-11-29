@@ -1,5 +1,6 @@
 package com.xiamu.wanandroid.mvvm.model.repository
 
+import com.xiamu.baselibs.base.WanResponse
 import com.xiamu.baselibs.http.Result
 import com.xiamu.baselibs.mvvm.BaseModel
 import com.xiamu.wanandroid.mvvm.model.api.WanRetrofitClient
@@ -34,6 +35,10 @@ class LoginModel : BaseModel() {
             Result.Success(response.data)
         else
             Result.Error(IOException(response.errorMsg))
+    }
+
+    suspend fun logot(): WanResponse<Any>{
+        return apiCall{WanRetrofitClient.service.logot()}
     }
 
 }

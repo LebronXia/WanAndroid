@@ -62,5 +62,6 @@ dependencies {
 
     api rootProject.ext.dependencies["base-rcv-helper"]
     api rootProject.ext.dependencies["recyclerview"]
+    api rootProject.ext.dependencies["logger"]
 
 }

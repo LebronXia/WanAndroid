@@ -26,7 +26,6 @@ interface WanService {
     @POST("/user/login")
     suspend fun login(@Field("username") username:String, @Field("password")password:String): WanResponse<LoginBean>
 
-
     //注册
     @FormUrlEncoded
     @POST("/user/register")
@@ -84,4 +83,12 @@ interface WanService {
     //我的收藏页面取消收藏
     @POST("/lg/uncollect/{id}/json")
     suspend fun removeCollectArticle(@Path("id")id: Int): WanResponse<Any>
+
+    //获取个人积分信息
+    @GET("/lg/coin/userinfo/json")
+    suspend fun getCoinUserInfo(): WanResponse<CoinUserInfo>
+
+    //退出登录
+    @GET("/user/logout/json")
+    suspend fun logot(): WanResponse<Any>
 }

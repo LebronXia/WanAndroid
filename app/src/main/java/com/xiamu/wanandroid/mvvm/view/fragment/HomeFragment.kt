@@ -21,6 +21,7 @@ import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.databinding.HomeVieModelBinding
 import com.xiamu.wanandroid.mvvm.view.activity.LoginActivity
+import com.xiamu.wanandroid.mvvm.view.activity.WebActivity
 import com.xiamu.wanandroid.mvvm.view.adapter.HomeArticleAdapter
 import com.xiamu.wanandroid.mvvm.viewmodel.MainHomeViewModel
 import com.xiamu.wanandroid.util.GlideImageLoader
@@ -110,7 +111,11 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
             }, recycleview)
             onItemChildClickListener = this@HomeFragment.onItemChildClickListener
             setOnItemClickListener{ _, _, position ->
-                context?.toast("你点击了波泥河~~")
+                var item = homeArticleAdapter.getItem(position)
+                Intent(activity, WebActivity::class.java).run {
+                    putExtra(AppConstant.EXTRA_URL_KEY, item?.link)
+                    startActivity(this)
+                }
             }
         }
     }
