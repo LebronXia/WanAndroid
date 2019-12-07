@@ -1,5 +1,6 @@
 package com.xiamu.wanandroid.mvvm.view.activity
 
+import android.opengl.Visibility
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.just.agentweb.AgentWeb
@@ -9,15 +10,14 @@ import com.xiamu.wanandroid.constant.AppConstant
 import kotlinx.android.synthetic.main.activity_knowtree_detail.*
 import kotlinx.android.synthetic.main.activity_web.*
 import android.webkit.WebView
-import android.graphics.Bitmap
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.KeyEvent
+import android.view.View
 import android.webkit.WebResourceRequest
 import com.just.agentweb.WebChromeClient
 import com.just.agentweb.WebViewClient
-import kotlinx.android.synthetic.main.item_konw_tree.*
+import com.xiamu.wanandroid.R
+import kotlinx.android.synthetic.main.activity_knowtree_detail.toolbar
+import kotlinx.android.synthetic.main.toolbar.*
 
 
 /**
@@ -28,12 +28,12 @@ class WebActivity : BaseActivity(){
     private var agentWeb: AgentWeb ?= null
     private lateinit var urlLink: String
 
-    override fun getLayoutResId(): Int = com.xiamu.wanandroid.R.layout.activity_web
+    override fun getLayoutResId(): Int = R.layout.activity_web
 
     override fun initView() {
 
         toolbar.apply {
-            title = getString(com.xiamu.wanandroid.R.string.web_isloading)
+            title = ""
             setSupportActionBar(this)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener {
@@ -41,7 +41,15 @@ class WebActivity : BaseActivity(){
             }
         }
 
-        initWebView();
+        tv_title.apply {
+            text = getString(R.string.web_isloading)
+            visibility = View.VISIBLE
+            postDelayed({
+                tv_title.isSelected = true
+            }, 2000)
+        }
+
+        initWebView()
     }
 
     override fun initData() {
@@ -58,7 +66,7 @@ class WebActivity : BaseActivity(){
             .useDefaultIndicator()// 使用默认进度条
             .setWebChromeClient(mWebChromeClient)
             .setWebViewClient(mWebViewClient)
-            .setMainFrameErrorView(com.xiamu.wanandroid.R.layout.agentweb_error_page, -1)
+            .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
             .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)//打开其他应用时，弹窗咨询用户是否前往其他应用
             .createAgentWeb()//
             .ready()
@@ -73,10 +81,7 @@ class WebActivity : BaseActivity(){
             super.onPageFinished(view, url)
         }
 
-        override fun shouldOverrideUrlLoading(
-            view: WebView?,
-            request: WebResourceRequest?
-        ): Boolean {
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
             return super.shouldOverrideUrlLoading(view, request)
         }
     }
@@ -88,7 +93,8 @@ class WebActivity : BaseActivity(){
         override fun onReceivedTitle(view: WebView?, title: String?) {
             super.onReceivedTitle(view, title)
             title?.let {
-                toolbar.title = it
+               // toolbar.title = it
+                tv_title.text = it
             }
         }
     }

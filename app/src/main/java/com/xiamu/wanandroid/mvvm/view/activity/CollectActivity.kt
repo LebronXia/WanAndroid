@@ -16,7 +16,6 @@ import com.xiamu.wanandroid.mvvm.viewmodel.CollectViewModel
 import com.xiamu.wanandroid.util.onNetError
 import kotlinx.android.synthetic.main.activity_knowtree_detail.*
 import kotlinx.android.synthetic.main.fragment_refresh_layout.*
-import org.simple.eventbus.EventBus
 
 /**
  * Created by zhengxiaobo in 2019-11-19
