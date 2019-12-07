@@ -4,11 +4,17 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
+import android.hardware.Camera
 import android.os.Bundle
 import android.util.Log
 import androidx.multidex.MultiDexApplication
 import com.hss01248.dialog.MyActyManager
 import com.hss01248.dialog.StyledDialog
+import com.kingja.loadsir.core.LoadSir
+import com.xiamu.baselibs.widget.loadsir.EmptyCallback
+import com.xiamu.baselibs.widget.loadsir.LoadingCallback
+import com.xiamu.baselibs.widget.loadsir.PlaceholderCallback
+import com.xiamu.baselibs.widget.loadsir.RetryCallback
 import kotlin.properties.Delegates
 
 
@@ -29,6 +35,17 @@ class WanAndApplication: MultiDexApplication() {
         //初始化全局dialog
         StyledDialog.init(CONTEXT)
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
+        initLoadSir()
+    }
+
+    private fun initLoadSir() {
+        LoadSir.beginBuilder()
+            .addCallback(EmptyCallback())
+            .addCallback( LoadingCallback())
+            .addCallback( PlaceholderCallback())
+            .addCallback( RetryCallback())
+            .setDefaultCallback(LoadingCallback::class.java)//设置默认状态页
+            .commit()
     }
 
     private val mActivityLifecycleCallbacks = object : Application.ActivityLifecycleCallbacks {

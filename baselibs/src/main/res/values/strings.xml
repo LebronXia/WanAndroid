@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">baselibs</string>
+
+    <string name="msg_error_retry">电波无法到达哟\u03a3( \u00b0 \u25b3 \u00b0)</string>
 </resources>

@@ -10,8 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.kingja.loadsir.callback.Callback
 import com.xiamu.baselibs.mvvm.BaseViewModel
 import com.xiamu.baselibs.mvvm.IViewModel
+import com.kingja.loadsir.callback.Callback.OnReloadListener
+import com.kingja.loadsir.core.LoadSir
+import com.kingja.loadsir.core.LoadService
+
+
 
 /**
  * Created by zhengxiaobo in 2019-10-28
@@ -26,6 +32,8 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
      * 数据是否加载过了
      */
     private var hasLoadData = false
+
+    private lateinit var mRootView: View
 
     /**
      * 加载布局
@@ -51,7 +59,10 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initVM()
-        return inflater.inflate(attachLayoutRes(), null)
+        mRootView = inflater.inflate(attachLayoutRes(), null)
+        val loadService =
+            LoadSir.getDefault().register(mRootView) { v -> onPageRetry(v) }
+        return loadService.loadLayout
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -92,6 +103,12 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
         }
     }
 
+    /**
+     * 页面重试
+     */
+    protected fun onPageRetry(v: View?) {
+
+    }
 
     override fun onDestroy() {
         lifecycle.removeObserver(mViewModel)

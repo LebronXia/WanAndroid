@@ -34,6 +34,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api rootProject.ext.dependencies["appcompat"]
+    implementation rootProject.ext.dependencies["design"]
     api rootProject.ext.dependencies["timber"]
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["runner"]
@@ -63,5 +64,7 @@ dependencies {
     api rootProject.ext.dependencies["base-rcv-helper"]
     api rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["loadsir"]
+    implementation rootProject.ext.dependencies["constraintlayout"]
 
 }
