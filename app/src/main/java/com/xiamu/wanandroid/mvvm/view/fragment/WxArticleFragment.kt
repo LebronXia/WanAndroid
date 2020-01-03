@@ -49,6 +49,7 @@ class WxArticleFragment : BaseVMFragment<WxArticleViewModel>(){
         super.startObserve()
         mViewModel.wxArticleState.observe(this, Observer {
 
+            showPageContent()
             it?.let {
                 trees.clear()
                 trees.addAll(it)

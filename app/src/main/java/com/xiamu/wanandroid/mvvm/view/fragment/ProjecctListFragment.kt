@@ -83,7 +83,7 @@ class ProjecctListFragment : BaseVMFragment<ProjectViewModel>(){
     override fun startObserve() {
         super.startObserve()
         mViewModel.projectListState.observe(this, Observer {
-
+            showPageContent()
             it?.let {
 
                 val treeDetailBean = it

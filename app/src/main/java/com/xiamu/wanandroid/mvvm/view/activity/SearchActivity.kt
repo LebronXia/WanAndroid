@@ -109,7 +109,7 @@ class SearchActivity : BaseVmActivity<SearchViewModelBinding, SearchViewModel>()
 
                         var mTvTag: TextView =
                             layoutInflater.inflate(R.layout.item_flow_text, fl_hot_search, false) as TextView
-                        mTvTag.setText(item.name)
+                        mTvTag.text = item.name
                         return mTvTag
                     }
                 }

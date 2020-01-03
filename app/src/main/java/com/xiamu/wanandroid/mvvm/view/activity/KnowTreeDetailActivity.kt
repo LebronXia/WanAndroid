@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_knowtree_detail.*
  */
 class KnowTreeDetailActivity: BaseVmActivity<KnowTreeBinding, TreeViewModel>(){
 
-    private lateinit var toolbartTitle: String
+    private lateinit var toolbarTitle: String
     private var trees: MutableList<TreeBean> = ArrayList()
 
     private val pagerAdapter: KnowledgePagerAdapter by lazy {
@@ -30,11 +30,13 @@ class KnowTreeDetailActivity: BaseVmActivity<KnowTreeBinding, TreeViewModel>(){
         return R.layout.activity_knowtree_detail
     }
 
+    override fun useLoadSir(): Boolean  = false
+
     override fun initView() {
         mBinding.viewmodel = mViewModel
 
         toolbar.run {
-            title = toolbartTitle
+            title = toolbarTitle
             setSupportActionBar(this)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener {
@@ -58,7 +60,7 @@ class KnowTreeDetailActivity: BaseVmActivity<KnowTreeBinding, TreeViewModel>(){
 
     override fun initData() {
         intent.run {
-            toolbartTitle = getStringExtra(AppConstant.EXTRA_TREE_NAME)
+            toolbarTitle = getStringExtra(AppConstant.EXTRA_TREE_NAME)
             getSerializableExtra(AppConstant.EXTRA_TREE_DATA)?.let {
                 val data = it as TreeBean
                 data.children?.let {

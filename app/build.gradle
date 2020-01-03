@@ -64,6 +64,7 @@ dependencies {
 
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    implementation rootProject.ext.dependencies["autosize"]
 
     //room
     implementation "androidx.room:room-runtime:$room_version"

@@ -16,13 +16,15 @@ import com.xiamu.baselibs.mvvm.IViewModel
 import com.kingja.loadsir.callback.Callback.OnReloadListener
 import com.kingja.loadsir.core.LoadSir
 import com.kingja.loadsir.core.LoadService
-
+import com.xiamu.baselibs.widget.loadsir.EmptyCallback
+import com.xiamu.baselibs.widget.loadsir.LoadingCallback
+import com.xiamu.baselibs.widget.loadsir.RetryCallback
 
 
 /**
  * Created by zhengxiaobo in 2019-10-28
  */
-abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
+abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IView{
 
     /**
      * 视图是否加载完毕
@@ -34,6 +36,13 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
     private var hasLoadData = false
 
     private lateinit var mRootView: View
+
+    private lateinit var mLoadService: LoadService<Any>
+
+    /**
+     * 是否使用loadsir，默认不使用
+     */
+    private fun useLoadSir(): Boolean = true
 
     /**
      * 加载布局
@@ -60,9 +69,15 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initVM()
         mRootView = inflater.inflate(attachLayoutRes(), null)
-        val loadService =
-            LoadSir.getDefault().register(mRootView) { v -> onPageRetry(v) }
-        return loadService.loadLayout
+
+        return if (useLoadSir()){
+            mLoadService =
+                LoadSir.getDefault().register(mRootView) { v -> onPageRetry(v) }
+            mLoadService.loadLayout
+        } else {
+            mRootView
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -108,6 +123,30 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment{
      */
     protected fun onPageRetry(v: View?) {
 
+    }
+
+    override fun showPageLoading() {
+        if (mLoadService != null) {
+            this.mLoadService.showCallback(LoadingCallback::class.java)
+        }
+    }
+
+    override fun showPageEmpty() {
+        if (mLoadService != null) {
+            mLoadService.showCallback(EmptyCallback::class.java)
+        }
+    }
+
+    override fun showPageError() {
+        if (mLoadService != null) {
+            mLoadService.showCallback(RetryCallback::class.java)
+        }
+    }
+
+    override fun showPageContent() {
+        if (mLoadService != null) {
+            mLoadService.showSuccess()
+        }
     }
 
     override fun onDestroy() {

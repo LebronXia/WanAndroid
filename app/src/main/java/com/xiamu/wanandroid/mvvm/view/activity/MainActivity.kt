@@ -4,31 +4,23 @@ import android.content.Intent
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.MenuItemCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.hss01248.dialog.StyledDialog
 import com.hss01248.dialog.interfaces.MyDialogListener
-import com.orhanobut.logger.Logger
-import com.xiamu.baselibs.base.BaseActivity
 import com.xiamu.baselibs.base.BaseModelActivity
-import com.xiamu.baselibs.base.BaseVMFragment
 import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
-import com.xiamu.wanandroid.databinding.MainBinding
 import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
 import com.xiamu.wanandroid.mvvm.view.fragment.*
-import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel
 import com.xiamu.wanandroid.mvvm.viewmodel.MainViewModel
 import com.xiamu.wanandroid.util.Preference
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.Dispatchers
@@ -66,6 +58,8 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
     private var nav_logout : MenuItem?= null
 
     override fun providerVMClass(): Class<MainViewModel>? = MainViewModel::class.java
+
+    override fun useLoadSir(): Boolean = false
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
@@ -150,7 +144,7 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
         super.startObserve()
 
         mViewModel.coinUserState.observe(this, Observer {
-
+            showPageContent()
             it?.let {
                 tv_user_grade?.text = it.level.toString()
                 tv_user_rank?.text = it.rank.toString()
@@ -170,9 +164,7 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
                         isLogin = false
                         EventBus.getDefault().post(LoginEvent(false), "main")
                     }
-
                 }
-
             }
         })
 

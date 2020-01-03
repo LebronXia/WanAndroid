@@ -28,6 +28,8 @@ class WebActivity : BaseActivity(){
     private var agentWeb: AgentWeb ?= null
     private lateinit var urlLink: String
 
+    override fun useLoadSir(): Boolean = false
+
     override fun getLayoutResId(): Int = R.layout.activity_web
 
     override fun initView() {

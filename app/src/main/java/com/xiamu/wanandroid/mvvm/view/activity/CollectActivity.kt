@@ -32,6 +32,8 @@ class CollectActivity: BaseModelActivity<CollectViewModel>(){
 
     override fun providerVMClass(): Class<CollectViewModel>? = CollectViewModel::class.java
 
+    override fun useLoadSir(): Boolean = false
+
     override fun getLayoutResId(): Int {
         return R.layout.activity_refresh_layout
     }

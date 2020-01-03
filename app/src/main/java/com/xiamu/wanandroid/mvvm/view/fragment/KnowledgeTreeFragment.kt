@@ -75,6 +75,7 @@ class KnowledgeTreeFragment: BaseVMFragment<TreeViewModel>(){
         super.startObserve()
 
         mViewModel.treeBeanState.observe(this, Observer {
+            showPageContent()
             treeDatas = it
             it?.let {
                 knowTreeAdapter.run {

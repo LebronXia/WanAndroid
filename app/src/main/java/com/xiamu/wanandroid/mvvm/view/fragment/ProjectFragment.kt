@@ -51,6 +51,7 @@ class ProjectFragment : BaseVMFragment<ProjectViewModel>(){
 
         mViewModel.projectState.observe(this, Observer {
 
+            showPageContent()
             it?.let {
                 projectTrees.clear()
                 projectTrees.addAll(it)

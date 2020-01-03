@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.fragment_navigation.*
 import q.rorbin.verticaltablayout.adapter.TabAdapter
 import q.rorbin.verticaltablayout.widget.ITabView
 import android.R
+import android.util.Log
+import com.xiamu.wanandroid.util.onNetError
 import q.rorbin.verticaltablayout.VerticalTabLayout
 import q.rorbin.verticaltablayout.widget.TabView
 
@@ -74,6 +76,7 @@ class NaviFragment : BaseVMFragment<NaviViewModel>(){
     }
 
     override fun lazyLoad() {
+        //showPageLoading()
         mViewModel.getNaviData()
     }
 
@@ -83,6 +86,7 @@ class NaviFragment : BaseVMFragment<NaviViewModel>(){
         mViewModel.naviState.observe(this, Observer {
 
             it?.let {
+                showPageContent()
                 tablist.clear()
                 flowlist.clear()
                 it.forEach{  navibean ->
@@ -123,6 +127,14 @@ class NaviFragment : BaseVMFragment<NaviViewModel>(){
                 //这里这个变量是用在RecyclerView滚动监听里面的
                 move = true
             }
+        }
+    }
+
+    override fun onError(e: Throwable) {
+        super.onError(e)
+        showPageError()
+        activity?.onNetError(e){
+            Log.d("activity", e.message)
         }
     }
 

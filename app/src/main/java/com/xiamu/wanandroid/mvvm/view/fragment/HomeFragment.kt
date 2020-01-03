@@ -180,6 +180,7 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
 
             _uistate.observe(this@HomeFragment, Observer {
 
+                showPageContent()
                 refreshlayout.isRefreshing = it.showLoading
 
                 it.showSuccess?.let {

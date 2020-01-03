@@ -15,6 +15,7 @@ import com.xiamu.baselibs.widget.loadsir.EmptyCallback
 import com.xiamu.baselibs.widget.loadsir.LoadingCallback
 import com.xiamu.baselibs.widget.loadsir.PlaceholderCallback
 import com.xiamu.baselibs.widget.loadsir.RetryCallback
+import me.jessyan.autosize.AutoSize
 import kotlin.properties.Delegates
 
 
@@ -36,6 +37,12 @@ class WanAndApplication: MultiDexApplication() {
         StyledDialog.init(CONTEXT)
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
         initLoadSir()
+        initAutosize()
+    }
+
+    private fun initAutosize() {
+        AutoSize.initCompatMultiProcess(this)
+
     }
 
     private fun initLoadSir() {
