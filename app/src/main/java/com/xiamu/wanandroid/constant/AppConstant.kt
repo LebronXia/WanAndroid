@@ -7,6 +7,7 @@ object AppConstant{
 
     const val USER_NAME = "user_name"
     const val USER_PASSWORD = "user_password"
+    const val HAS_NETWORK_KEY = "has_network_key"
 
     const val LOGIN_KEY = "login_key"
 

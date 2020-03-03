@@ -11,6 +11,7 @@ import androidx.multidex.MultiDexApplication
 import com.hss01248.dialog.MyActyManager
 import com.hss01248.dialog.StyledDialog
 import com.kingja.loadsir.core.LoadSir
+import com.xiamu.baselibs.base.BaseApplication
 import com.xiamu.baselibs.widget.loadsir.EmptyCallback
 import com.xiamu.baselibs.widget.loadsir.LoadingCallback
 import com.xiamu.baselibs.widget.loadsir.PlaceholderCallback
@@ -23,7 +24,7 @@ import kotlin.properties.Delegates
 /**
  * Created by zhengxiaobo in 2019-10-30
  */
-class WanAndApplication: MultiDexApplication() {
+class WanAndApplication: BaseApplication() {
 
     companion object{
         private val TAG = "App"

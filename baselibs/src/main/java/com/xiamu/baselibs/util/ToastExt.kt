@@ -1,10 +1,18 @@
 package com.xiamu.baselibs.util
+import android.app.ProgressDialog.show
 import android.content.Context
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 
 fun Context.toast(content: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, content, duration).apply {
+        show()
+    }
+}
+
+fun Fragment.showToast(content: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this?.activity?.applicationContext, content, duration).apply {
         show()
     }
 }

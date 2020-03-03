@@ -24,6 +24,8 @@ class RegisterActivity : BaseVmActivity<LoginViewmodelBinding, LoginViewModel>()
 
     private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
 
+    override fun useLoadSir(): Boolean = false
+
     override fun providerVMClass(): Class<LoginViewModel>? = LoginViewModel::class.java
 
     override fun getLayoutResId(): Int {

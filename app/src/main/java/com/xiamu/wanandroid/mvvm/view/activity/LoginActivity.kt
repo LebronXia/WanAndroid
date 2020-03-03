@@ -22,6 +22,8 @@ class LoginActivity : BaseVmActivity<LoginBinding, LoginViewModel>() {
 
     private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
 
+    override fun useLoadSir(): Boolean = false
+
     override fun providerVMClass(): Class<LoginViewModel>? = LoginViewModel::class.java
 
     var _user: String by Preference(AppConstant.USER_NAME, "")

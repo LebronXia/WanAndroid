@@ -1,11 +1,10 @@
 package com.xiamu.baselibs.base
 
 import android.os.Bundle
+import android.preference.Preference
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.LifecycleObserver
+
 import com.kingja.loadsir.callback.Callback
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir

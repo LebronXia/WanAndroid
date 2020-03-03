@@ -18,23 +18,28 @@ import com.xiamu.baselibs.util.toast
 import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
+import com.xiamu.wanandroid.mvvm.model.event.TokenEvent
 import com.xiamu.wanandroid.mvvm.view.fragment.*
 import com.xiamu.wanandroid.mvvm.viewmodel.MainViewModel
 import com.xiamu.wanandroid.util.Preference
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.simple.eventbus.EventBus
 import org.simple.eventbus.Subscriber
 import org.simple.eventbus.ThreadMode
+import kotlinx.coroutines.launch
 
 class MainActivity: BaseModelActivity<MainViewModel>() {
 
     private var isLogin by Preference(AppConstant.LOGIN_KEY, false)
     var userName: String by Preference(AppConstant.USER_NAME, "")
+
+    /**
+     * 缓存上一次的网络状态
+     */
+    protected var hasNetwork: Boolean by Preference(AppConstant.HAS_NETWORK_KEY, false)
 
     private val FRAGMENT_HOME = 0x01
     private val FRAGMENT_KNOWLEDGE = 0x02
@@ -125,18 +130,38 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
     @Subscriber(mode = ThreadMode.MAIN , tag = "main")
     private fun afterLoginUpdateUI(event: LoginEvent){
         if (event.isLogin){
-            toast("接收到登录数据")
             tv_tologin?.text = userName
             mViewModel.getCoinUserInfo()
             mHomeFragment?.lazyLoad()
             nav_logout?.isVisible = isLogin
         } else {
+            isLogin = false
             tv_tologin?.text = resources.getString(R.string.login)
             tv_user_grade?.text = "--"
             tv_user_rank?.text = "--"
             nav_logout?.isVisible = false
             mHomeFragment?.lazyLoad()
             nav_logout?.isVisible = isLogin
+        }
+    }
+
+    @Subscriber(mode = ThreadMode.MAIN)
+    private fun TokenInvalid(event: TokenEvent){
+        if (event.isInvalid){
+            GlobalScope.launch(Dispatchers.Default) {
+                Preference.clearPreference()
+
+                withContext(Dispatchers.Main){
+                    isLogin = false
+                    tv_tologin?.text = resources.getString(R.string.login)
+                    tv_user_grade?.text = "--"
+                    tv_user_rank?.text = "--"
+                    nav_logout?.isVisible = false
+                    mHomeFragment?.lazyLoad()
+                    nav_logout?.isVisible = isLogin
+                    startActivity(Intent(context,  LoginActivity::class.java))
+                }
+            }
         }
     }
 

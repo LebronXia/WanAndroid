@@ -24,4 +24,12 @@ package com.xiamu.baselibs.base
      * 展示页面内容
      */
      fun showPageContent()
+
+     fun showLoading()
+
+     fun hideLoading()
+
+     fun showError(errorMsg: String)
+
+     fun showMsg(msg: String)
 }

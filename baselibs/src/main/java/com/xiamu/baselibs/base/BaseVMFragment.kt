@@ -16,6 +16,8 @@ import com.xiamu.baselibs.mvvm.IViewModel
 import com.kingja.loadsir.callback.Callback.OnReloadListener
 import com.kingja.loadsir.core.LoadSir
 import com.kingja.loadsir.core.LoadService
+import com.xiamu.baselibs.util.showToast
+import com.xiamu.baselibs.util.toast
 import com.xiamu.baselibs.widget.loadsir.EmptyCallback
 import com.xiamu.baselibs.widget.loadsir.LoadingCallback
 import com.xiamu.baselibs.widget.loadsir.RetryCallback
@@ -25,7 +27,6 @@ import com.xiamu.baselibs.widget.loadsir.RetryCallback
  * Created by zhengxiaobo in 2019-10-28
  */
 abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IView{
-
     /**
      * 视图是否加载完毕
      */
@@ -99,6 +100,9 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IView{
 
     open fun startObserve(){
         mViewModel?.mException?.observe(this, Observer { it?.let { onError(it) } })
+        mViewModel.mNetStatus.observe(this, Observer {
+            context?.toast(it)
+        })
     }
 
     open fun onError(e: Throwable) {}
@@ -123,6 +127,12 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IView{
      */
     protected fun onPageRetry(v: View?) {
 
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
     }
 
     override fun showPageLoading() {
@@ -152,6 +162,14 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IView{
     override fun onDestroy() {
         lifecycle.removeObserver(mViewModel)
         super.onDestroy()
+    }
+
+    override fun showError(errorMsg: String) {
+        showToast(errorMsg)
+    }
+
+    override fun showMsg(msg: String) {
+        showToast(msg)
     }
 
 }

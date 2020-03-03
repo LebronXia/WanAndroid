@@ -4,6 +4,10 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.xiamu.baselibs.R
+import com.xiamu.baselibs.base.BaseApplication
+import com.xiamu.baselibs.util.NetWorkUtils
+import com.xiamu.baselibs.util.toast
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
@@ -18,6 +22,7 @@ import org.simple.eventbus.EventBus
 open class BaseViewModel : ViewModel(), IViewModel, LifecycleObserver {
 
     val mException: MutableLiveData<Throwable> = MutableLiveData()
+    val mNetStatus: MutableLiveData<String> = MutableLiveData()
 
 
     //suspend CoroutineScope.() -> Unit  指执行挂起函数
@@ -27,6 +32,10 @@ open class BaseViewModel : ViewModel(), IViewModel, LifecycleObserver {
     }
 
     fun launch(tryBlock: suspend CoroutineScope.() -> Unit) {
+        if (!NetWorkUtils.isNetworkAvailable(BaseApplication.CONTEXT)){
+            mNetStatus.value = BaseApplication.CONTEXT.resources.getString(R.string.network_unavailable_tip)
+        }
+
         launchOnUI {
             tryCatch(tryBlock, {}, {}, true)
         }

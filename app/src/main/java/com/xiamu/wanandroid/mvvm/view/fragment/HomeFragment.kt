@@ -179,8 +179,6 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
             })
 
             _uistate.observe(this@HomeFragment, Observer {
-
-                showPageContent()
                 refreshlayout.isRefreshing = it.showLoading
 
                 it.showSuccess?.let {
@@ -190,12 +188,24 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
                         setEnableLoadMore(true)
                         loadMoreComplete()
                     }
+
+                    if(homeArticleAdapter.data.isEmpty()){
+                        showPageEmpty()
+                    } else {
+                        showPageContent()
+                    }
                 }
 
                 it.showError?.let {
                     context?.toast(it.toString())
-                    homeArticleAdapter.loadMoreComplete()
-
+                    showPageError()
+                    homeArticleAdapter.run {
+                        if (isFresh){
+                            setEnableLoadMore(true)
+                        } else {
+                            homeArticleAdapter.loadMoreComplete()
+                        }
+                    }
                 }
             })
 
@@ -210,6 +220,7 @@ class HomeFragment: BaseVMFragment<MainHomeViewModel>() {
 
     override fun onError(e: Throwable) {
         super.onError(e)
+        showPageError()
         activity?.onNetError(e){
             Log.d("activity", e.message)
         }

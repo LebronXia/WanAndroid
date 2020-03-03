@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.xiamu.baselibs.mvvm.BaseViewModel
 import com.xiamu.baselibs.mvvm.IViewModel
+import com.xiamu.baselibs.util.toast
 import java.util.prefs.Preferences
 
 /**
@@ -41,6 +42,9 @@ abstract class BaseVmActivity<DB : ViewDataBinding, VM: BaseViewModel> : BaseAct
 
     open fun startObserve() {
         mViewModel.mException.observe(this, Observer { it?.let { onError(it) } })
+        mViewModel.mNetStatus.observe(this, Observer {
+            this.toast(it)
+        })
     }
 
     open fun onError(e: Throwable) {}
