@@ -35,6 +35,7 @@ class DimPleView(context: Context?, attrs: AttributeSet?): View(context, attrs) 
     private val random = Random()
 
     init {
+
         animator.duration = 2000
         animator.repeatCount = -1
         animator.interpolator = LinearInterpolator()
