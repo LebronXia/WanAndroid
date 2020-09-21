@@ -42,6 +42,8 @@ class SearchActivity : BaseVmActivity<SearchViewModelBinding, SearchViewModel>()
         RecyclerViewItemDecoration(this)
     }
 
+    override fun useLoadSir(): Boolean = false
+
     override fun providerVMClass(): Class<SearchViewModel>? = SearchViewModel::class.java
 
     override fun getLayoutResId(): Int {

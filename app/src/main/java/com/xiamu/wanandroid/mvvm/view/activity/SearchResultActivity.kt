@@ -30,6 +30,8 @@ class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
         RecyclerViewItemDecoration(this@SearchResultActivity, LinearLayoutManager.VERTICAL)
     }
 
+    override fun useLoadSir(): Boolean = false
+
     override fun getLayoutResId(): Int {
         return R.layout.activity_refresh_layout
     }

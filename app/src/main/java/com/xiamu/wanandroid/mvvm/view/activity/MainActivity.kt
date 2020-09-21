@@ -20,6 +20,7 @@ import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
 import com.xiamu.wanandroid.mvvm.model.event.TokenEvent
 import com.xiamu.wanandroid.mvvm.view.fragment.*
+import com.xiamu.wanandroid.mvvm.view.widget.view.DimPleActivity
 import com.xiamu.wanandroid.mvvm.viewmodel.MainViewModel
 import com.xiamu.wanandroid.util.Preference
 import io.reactivex.disposables.Disposable
@@ -203,7 +204,8 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.menu_search -> {
-                startActivity(Intent(this, SearchActivity::class.java))
+               // startActivity(Intent(this, SearchActivity::class.java))
+                startActivity(Intent(this, DimPleActivity::class.java))
                 return true
             }
 
