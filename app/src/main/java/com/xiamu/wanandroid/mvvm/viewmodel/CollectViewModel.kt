@@ -27,6 +27,7 @@ open class CollectViewModel: BaseViewModel(){
         }
     }
 
+
     fun collectArticle(id: Int){
         launch{
             var result = withContext(Dispatchers.IO){ collectRepository.collectArticle(id)}

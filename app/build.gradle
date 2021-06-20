@@ -6,6 +6,16 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+class HenCoder implements Plugin<Project>{
+
+    @Override
+    void apply(Project target) {
+        println "就按哈哈"
+    }
+}
+
+apply plugin: HenCoder.class
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]

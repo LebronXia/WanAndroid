@@ -19,11 +19,11 @@ import com.xiamu.wanandroid.constant.AppConstant
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.mvvm.model.event.LoginEvent
 import com.xiamu.wanandroid.mvvm.model.event.TokenEvent
+import com.xiamu.wanandroid.mvvm.view.demo.DemoActivity
 import com.xiamu.wanandroid.mvvm.view.fragment.*
-import com.xiamu.wanandroid.mvvm.view.widget.view.DimPleActivity
+import com.xiamu.wanandroid.mvvm.view.widget.view.dimPle.DimPleActivity
 import com.xiamu.wanandroid.mvvm.viewmodel.MainViewModel
 import com.xiamu.wanandroid.util.Preference
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.*
@@ -86,7 +86,6 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
         toolbar.run {
             setSupportActionBar(this)
         }
-
     }
 
     private fun initNavView() {
@@ -320,6 +319,9 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
     private val onDrawerNavigationItemSelectedListener =
         NavigationView.OnNavigationItemSelectedListener {item ->
             when(item.itemId){
+                R.id.nav_demo -> {
+                    startActivity(Intent(this, DemoActivity::class.java))
+                }
                 R.id.nav_score -> {
 
                 }

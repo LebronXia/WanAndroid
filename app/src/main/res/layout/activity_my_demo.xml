@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycleview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/toolbar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/shape_divider_my"
+            android:showDividers="middle"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tv_layoutmanager"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="layoutManager"
+                />
+
+            <TextView
+                android:id="@+id/tv_viewGroup"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="kotlin自定义ViewGroup"/>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

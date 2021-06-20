@@ -1,4 +1,4 @@
-package com.xiamu.wanandroid.mvvm.view.widget.view
+package com.xiamu.wanandroid.mvvm.view.widget.view.dimPle
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -7,10 +7,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
-import com.orhanobut.logger.Logger
-import me.jessyan.autosize.utils.LogUtils
+import com.xiamu.wanandroid.mvvm.view.widget.view.Particle
 import java.util.*
-import java.util.jar.Attributes
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin
@@ -103,7 +101,16 @@ class DimPleView(context: Context?, attrs: AttributeSet?): View(context, attrs) 
             maxOffset = random.nextInt(200)
 
             particleList.add(
-                    Particle(nextX, nextY,2f,speed,100,maxOffset.toFloat(), offSet, angle)
+                Particle(
+                    nextX,
+                    nextY,
+                    2f,
+                    speed,
+                    100,
+                    maxOffset.toFloat(),
+                    offSet,
+                    angle
+                )
                     )
         }
 
