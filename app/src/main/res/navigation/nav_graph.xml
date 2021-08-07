@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_HomeFragment">
+
+    <fragment
+        android:id="@+id/nav_HomeFragment"
+        tools:layout="@layout/fragment_nav_home"
+        android:name="com.xiamu.wanandroid.mvvm.demo.navigation.Nav_HomeFragment"
+        android:label="Nav_HomeFragment" >
+        <action
+            android:id="@+id/action_nav_HomeFragment_to_nav_TwoFragment"
+            app:destination="@id/nav_TwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_TwoFragment"
+        tools:layout="@layout/fragment_nav_two"
+        android:name="com.xiamu.wanandroid.mvvm.demo.navigation.Nav_TwoFragment"
+        android:label="Nav_TwoFragment">
+
+        <argument
+            android:name="size"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="hahah"
+            />
+    </fragment>
+</navigation>

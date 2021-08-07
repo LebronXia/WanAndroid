@@ -34,6 +34,18 @@
                 android:onClick="onClick"
                 android:text="kotlin自定义ViewGroup"/>
 
+            <TextView
+                android:id="@+id/tv_navigation"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="Navigation"/>
+
+            <TextView
+                android:id="@+id/tv_flow"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="Flow"/>
+
 
         </LinearLayout>
 

@@ -3,9 +3,12 @@ package com.xiamu.wanandroid.mvvm.view.demo
 import android.content.Intent
 import android.view.View
 import com.xiamu.baselibs.base.BaseActivity
+import com.xiamu.baselibs.util.startKtxActivity
 import com.xiamu.wanandroid.R
+import com.xiamu.wanandroid.mvvm.demo.flow.FlowDemoActivity
+import com.xiamu.wanandroid.mvvm.demo.navigation.NavigationActivity
+import com.xiamu.wanandroid.mvvm.view.demo.CustomViewGroup.TheActivity
 import com.xiamu.wanandroid.mvvm.view.demo.layoutmanager.LayoutManagerActivity
-import kotlinx.android.synthetic.main.activity_my_demo.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 /**
@@ -38,9 +41,19 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
                 startActivity(Intent(this, LayoutManagerActivity::class.java))
             }
             R.id.tv_viewGroup -> {
-
+                startActivity(Intent(this, TheActivity::class.java))
             }
-
+            R.id.tv_navigation -> {
+                startActivity(Intent(this, NavigationActivity::class.java))
+            }
+            R.id.tv_flow -> {
+                startKtxActivity<FlowDemoActivity>()
+            }
         }
     }
+
+//    inline fun <reified T: Activity> Activity.startActivity(){
+//        val intent = Intent(this, javaClass<T>())
+//        startActivity(intent)
+//    }
 }
