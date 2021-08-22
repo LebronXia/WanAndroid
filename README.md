@@ -1,5 +1,5 @@
 # WanAndroid
-MVVM+kotlin+协程
+MVVM+kotlin+协程+DataBinding
 
 ##v1.0
 - 大部分功能完成，正常使用
@@ -11,5 +11,8 @@ MVVM+kotlin+协程
 - 增加todo功能()
 - 断网重连
 - 登录判断
+
+##v2.0
+- 增加Compose版本()
 
 ## 总结
