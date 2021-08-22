@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/viewBackground"
+        app:cardCornerRadius="@dimen/dp_1"
+        app:cardElevation="@dimen/dp_1"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/item_content_padding"
+            >
+
+            <TextView
+                android:id="@+id/tv_article_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置顶"
+                android:textSize="@dimen/sp_10"
+                android:textColor="@color/item_tag"
+                android:background="@drawable/bg_refresh"
+                android:padding="@dimen/dp_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_article_new"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/tv_article_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_10"
+                android:textColor="@color/item_tag"
+                android:background="@drawable/bg_refresh"
+                android:padding="@dimen/dp_3"
+                android:text="新"
+                app:layout_constraintStart_toEndOf="@+id/tv_article_top"
+                android:layout_marginLeft="@dimen/dp_6"
+                app:layout_constraintTop_toTopOf="@id/tv_article_top"
+                />
+
+            <TextView
+                android:id="@+id/tv_article_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                tools:text="作者"
+                android:textColor="@color/item_tag"
+                app:layout_constraintStart_toEndOf="@+id/tv_article_new"
+                android:layout_marginLeft="@dimen/dp_12"
+                app:layout_constraintTop_toTopOf="@id/tv_article_new"
+                app:layout_constraintBottom_toBottomOf="@id/tv_article_new"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_article_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="刚刚"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/item_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tv_article_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="haahhahahahahha"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/item_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_article_date"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/dp_12"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:lineSpacingExtra="2dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_article_chapterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                tools:text="哈哈哈哈"
+                android:textColor="@color/item_tag"
+                app:layout_constraintTop_toBottomOf="@id/tv_article_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/dp_16"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_article_chapterName"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_article_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

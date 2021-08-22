@@ -67,7 +67,7 @@ class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
 
     override fun initData() {
         intent.run {
-            key = getStringExtra(AppConstant.EXTRA_SEARCH_KEY)
+            key = getStringExtra(AppConstant.EXTRA_SEARCH_KEY)!!
         }
         refresh()
     }
@@ -109,7 +109,7 @@ class SearchResultActivity : BaseModelActivity<SearchViewModel>(){
         super.onError(e)
         onNetError(e){
             refreshlayout.isRefreshing = false
-            Log.d("SearchResultActivity", e.message)
+            Log.d("SearchResultActivity", e.message!!)
         }
     }
 

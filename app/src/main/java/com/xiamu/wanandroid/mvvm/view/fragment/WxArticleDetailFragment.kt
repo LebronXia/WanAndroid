@@ -110,7 +110,7 @@ class WxArticleDetailFragment : BaseVMFragment<WxArticleViewModel>(){
         super.onError(e)
         activity?.onNetError(e){
             refreshlayout.isRefreshing = false
-            Log.d("activity", e.message)
+            Log.d("activity", e.message?:"")
         }
     }
 }

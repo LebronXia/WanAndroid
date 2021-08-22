@@ -46,6 +46,11 @@
                 android:onClick="onClick"
                 android:text="Flow"/>
 
+            <TextView
+                android:id="@+id/tv_paging3"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="paging3"/>
 
         </LinearLayout>
 

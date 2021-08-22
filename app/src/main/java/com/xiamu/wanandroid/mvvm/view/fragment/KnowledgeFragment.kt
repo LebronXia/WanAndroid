@@ -114,7 +114,7 @@ class KnowledgeFragment : BaseVMFragment<TreeViewModel>(){
         super.onError(e)
         activity?.onNetError(e){
             refreshlayout.isRefreshing = false
-            Log.d("activity", e.message)
+            Log.d("activity", e.message?:"")
         }
     }
 

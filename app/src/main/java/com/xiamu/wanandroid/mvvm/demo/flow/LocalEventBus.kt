@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.asSharedFlow
 object LocalEventBus {
 
     //http://events.jianshu.io/p/039af595084a    StateFlow和SharedFlow
+
+    //它可以将已发送过的数据发送给新的订阅者，并且具有高的配置性。
 //    private val localEvents = MutableSharedFlow<Int>(
 //        5,   //新的订阅者Collect时，发送几个已经发送过的数据给它
 //        3,   //减去replay，MutableSharedFlow还缓存多少数据

@@ -137,7 +137,6 @@ class CollectActivity: BaseModelActivity<CollectViewModel>(){
         super.onError(e)
         onNetError(e){
             refreshlayout.isRefreshing = false
-            Log.d("CollectActivity", e.message)
         }
     }
 

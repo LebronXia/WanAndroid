@@ -1,5 +1,6 @@
 package com.xiamu.wanandroid.mvvm.model.entry
 
+import com.xiamu.wanandroid.mvvm.demo.paging3.DifferData
 import java.io.Serializable
 
 /**
@@ -35,4 +36,12 @@ data class Article( val id: Int,
                     val shareUser:String,
                     val tags:Any, // Not sure
                     val userId:Int
-                    ):Serializable
+                    ):Serializable, DifferData{
+                        override fun areItemsTheSame(data: DifferData): Boolean {
+                            return (data as? Article)?.id == id
+                        }
+
+                        override fun areContentsTheSame(data: DifferData): Boolean {
+                            return (data as? Article)?.title == title
+                        }
+                    }

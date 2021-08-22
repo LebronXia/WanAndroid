@@ -134,7 +134,7 @@ class NaviFragment : BaseVMFragment<NaviViewModel>(){
         super.onError(e)
         showPageError()
         activity?.onNetError(e){
-            Log.d("activity", e.message)
+            Log.d("activity", e.message?:"")
         }
     }
 

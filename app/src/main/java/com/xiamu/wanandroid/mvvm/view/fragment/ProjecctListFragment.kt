@@ -110,7 +110,7 @@ class ProjecctListFragment : BaseVMFragment<ProjectViewModel>(){
         super.onError(e)
         activity?.onNetError(e){
             refreshlayout.isRefreshing = false
-            Log.d("ProjecctListFragment", e.message)
+            Log.d("ProjecctListFragment", e.message?:"")
         }
     }
 

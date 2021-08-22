@@ -60,7 +60,7 @@ class KnowTreeDetailActivity: BaseVmActivity<KnowTreeBinding, TreeViewModel>(){
 
     override fun initData() {
         intent.run {
-            toolbarTitle = getStringExtra(AppConstant.EXTRA_TREE_NAME)
+            toolbarTitle = getStringExtra(AppConstant.EXTRA_TREE_NAME)!!
             getSerializableExtra(AppConstant.EXTRA_TREE_DATA)?.let {
                 val data = it as TreeBean
                 data.children?.let {

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.xiamu.baselibs.base.BaseModelActivity
 import com.xiamu.wanandroid.R
+import com.xiamu.wanandroid.mvvm.viewmodel.LoginViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
@@ -16,6 +17,8 @@ import kotlinx.coroutines.launch
 class FlowDemoActivity : BaseModelActivity<DemoViewModel>(){
 
     override fun useLoadSir(): Boolean = false
+
+    override fun providerVMClass(): Class<DemoViewModel>? = DemoViewModel::class.java
     override fun getLayoutResId(): Int  = R.layout.activity_flow
     override fun initView() {
 

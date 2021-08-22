@@ -7,6 +7,7 @@ import com.xiamu.baselibs.util.startKtxActivity
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.mvvm.demo.flow.FlowDemoActivity
 import com.xiamu.wanandroid.mvvm.demo.navigation.NavigationActivity
+import com.xiamu.wanandroid.mvvm.demo.paging3.PagingDemoActivity
 import com.xiamu.wanandroid.mvvm.view.demo.CustomViewGroup.TheActivity
 import com.xiamu.wanandroid.mvvm.view.demo.layoutmanager.LayoutManagerActivity
 import kotlinx.android.synthetic.main.toolbar.*
@@ -48,6 +49,9 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
             }
             R.id.tv_flow -> {
                 startKtxActivity<FlowDemoActivity>()
+            }
+            R.id.tv_paging3 -> {
+                startKtxActivity<PagingDemoActivity>()
             }
         }
     }

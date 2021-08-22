@@ -99,8 +99,8 @@ abstract class BaseVMFragment<VM: BaseViewModel> : Fragment, IView{
     open fun providerVMClass(): Class<VM>? = null
 
     open fun startObserve(){
-        mViewModel?.mException?.observe(this, Observer { it?.let { onError(it) } })
-        mViewModel.mNetStatus.observe(this, Observer {
+        mViewModel?.mException?.observe(viewLifecycleOwner, Observer { it?.let { onError(it) } })
+        mViewModel.mNetStatus.observe(viewLifecycleOwner, Observer {
             context?.toast(it)
         })
     }
