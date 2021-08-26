@@ -21,9 +21,7 @@ import kotlinx.coroutines.launch
  */
 class PagingDemoActivity: BaseModelActivity<Paging3ViewModel>() {
 
-
-
-   // private val pagingArticleAdapter = PagingArticleAdapter()
+    //private val pagingArticleAdapter = PagingArticleAdapter()
 
     private val mAdapter = PagingNormalAdapter()
 
@@ -77,7 +75,6 @@ class PagingDemoActivity: BaseModelActivity<Paging3ViewModel>() {
 //            }
         }
     }
-
 
     override fun initData() {
        refresh()

@@ -52,5 +52,4 @@ class PagingArticleAdapter: PagingDataAdapter<Article, PagingArticleAdapter.View
         return ViewHolder(view)
     }
 
-
 }

@@ -14,6 +14,7 @@ import com.xiamu.baselibs.widget.loadsir.EmptyCallback
 import com.xiamu.baselibs.widget.loadsir.LoadingCallback
 import com.xiamu.baselibs.widget.loadsir.PlaceholderCallback
 import com.xiamu.baselibs.widget.loadsir.RetryCallback
+import com.xiamu.wanandroid.util.main
 import me.jessyan.autosize.AutoSize
 import kotlin.properties.Delegates
 
