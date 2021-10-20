@@ -1,2 +1,3 @@
 include ':app', ':baselibs'
 rootProject.name='WanAndroid'
+include ':compose-app'

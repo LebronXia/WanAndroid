@@ -24,7 +24,6 @@ import com.xiamu.wanandroid.mvvm.view.fragment.*
 import com.xiamu.wanandroid.mvvm.view.widget.view.dimPle.DimPleActivity
 import com.xiamu.wanandroid.mvvm.viewmodel.MainViewModel
 import com.xiamu.wanandroid.util.Preference
-import com.xiamu.wanandroid.util.main
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.*
@@ -73,7 +72,6 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
     }
 
     override fun initView() {
-        main()
         EventBus.getDefault().register(this)
         bottom_nav.run {
             setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
