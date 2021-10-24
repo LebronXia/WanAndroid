@@ -60,15 +60,15 @@ fun MainScreen(navController: NavController,
                     )
                 },
                 floatingActionButton = {
-                    FloatingActionButton(onClick = {
-                        user?.let {
-                            showToast("点击了~~~~${user!!.nickname}")
-                        }
-
-
-                    }) {
-                        Text(text = "x")
-                    }
+//                    FloatingActionButton(onClick = {
+//                        user?.let {
+//                            showToast("点击了~~~~${user!!.nickname}")
+//                        }
+//
+//
+//                    }) {
+//                        Text(text = "x")
+//                    }
                 },
                 floatingActionButtonPosition = FabPosition.End,
                 //抽屉内容

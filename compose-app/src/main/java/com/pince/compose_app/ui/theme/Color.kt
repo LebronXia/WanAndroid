@@ -14,6 +14,11 @@ val SurfaceColorLight = Color(0xFFEF5350)//图标着色
 val DivideColorLight = Color(0xE6AEAEAE)//分割线颜色
 
 object Colors{
+    val white = Color.White
+    val green = Color(0xFF4CAF50)
+    val red = Color(0xFFF44336)
+    val blue = Color(0xFF2196F3)
+    val main = green
     var titleBar = Color(0xFFFAFAFA)
     val text_h1 = Color(0xFF212121)
     val text_h2 = Color(0xFF757575)

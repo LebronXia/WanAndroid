@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.pince.compose_app.extend.navigateWithBack
 import com.pince.compose_app.helper.UserInfoManager
 import com.pince.compose_app.ui.login.LoginViewModel
 import com.pince.compose_app.ui.theme.Colors
@@ -49,7 +50,7 @@ fun LoginScreen(navController: NavHostController) {  //navController: NavHostCon
             launch {
                 viewModel.loginScreenState.collect {
                     it.showSuccess?.let {
-                        navController.navigate("main")
+                        navController.navigateWithBack("main")
                     }
                     it.showError?.let {
                         showToast(it.toString())

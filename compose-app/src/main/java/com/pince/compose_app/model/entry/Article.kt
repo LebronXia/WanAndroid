@@ -1,5 +1,7 @@
 package com.pince.compose_app.model.entry
 
+import androidx.compose.ui.graphics.Color
+import com.pince.compose_app.ui.theme.Colors
 import java.io.Serializable
 
 /**
@@ -33,6 +35,20 @@ data class Article( val id: Int,
                     val selfVisible:Int,
                     val shareDate:Long,
                     val shareUser:String,
-                    val tags:Any, // Not sure
+                    val tags: MutableList<ArticleTag>, // Not sure
                     val userId:Int
-                    ):Serializable
+):Serializable
+
+data class ArticleTag(val name: String, val url: String){
+
+    fun getColor(): Color {
+        return when(name){
+            "置顶" -> Colors.red
+            "本站发布" -> Color(0xFF2196F3)
+            "问答" -> Color(0xFF00BCD4)
+            "公众号" -> Color(0xFF4CAF50)
+            "项目" -> Color(0xFF009688)
+            else -> Colors.main
+        }
+    }
+}

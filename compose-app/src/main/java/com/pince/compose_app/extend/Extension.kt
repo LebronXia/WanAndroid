@@ -1,6 +1,7 @@
 package com.pince.compose_app.extend
 
 import android.app.Activity
+import androidx.navigation.NavController
 import com.xiamu.baselibs.base.WanResponse
 import com.xiamu.baselibs.util.toast
 import kotlinx.coroutines.CoroutineScope
@@ -31,10 +32,21 @@ suspend fun executeResponse(response: WanResponse<Any>, successBlock: suspend Co
     }
 }
 
-
 fun Activity.onNetError(e: Throwable, func: (e: Throwable) -> Unit) {
     if (e is HttpException) {
         toast("网络错误")
         func(e)
+    }
+}
+
+fun NavController.navigateWithBack(screen: String){
+    popBackStack()
+    navigate(screen)
+}
+
+fun NavController.navigationSingTop(screen: String){
+    popBackStack()
+    navigate(screen){
+        launchSingleTop = true
     }
 }
