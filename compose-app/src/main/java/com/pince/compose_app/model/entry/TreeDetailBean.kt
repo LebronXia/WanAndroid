@@ -1,5 +1,7 @@
 package com.xiamu.wanandroid.mvvm.model.entry
 
+import com.pince.compose_app.model.entry.ArticleTag
+
 /**
  * Created by zhengxiaobo in 2019-11-07
  */
@@ -37,10 +39,10 @@ data class TreeItemData(
     val shareUser: String,
     val superChapterId: Int,
     val superChapterName: String,
-    val tags: List<Any>,
+    val tags: MutableList<ArticleTag>,
     val title: String,
     val type: Int,
     val userId: Int,
     val visible: Int,
-    val zan: Int
+    val zan: Int,
 )

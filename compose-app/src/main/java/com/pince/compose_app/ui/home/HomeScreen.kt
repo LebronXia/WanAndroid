@@ -38,6 +38,7 @@ import com.pince.compose_app.LoginScreen
 import com.pince.compose_app.R
 import com.pince.compose_app.model.entry.Article
 import com.pince.compose_app.model.entry.BannerData
+import com.pince.compose_app.model.entry.CommonArticleBean
 import com.pince.compose_app.ui.home.viewmodel.HomeViewModel
 import com.pince.compose_app.ui.theme.Colors
 import com.pince.compose_app.ui.theme.Typography
@@ -47,6 +48,7 @@ import com.pince.compose_app.util.UpLoadError
 import com.pince.compose_app.util.UpLoadLoading
 import com.pince.compose_app.util.showToast
 import com.pince.compose_app.widget.Banner
+import com.pince.compose_app.widget.SwipeRefreshList
 import com.xiamu.wanandroid.mvvm.model.entry.BannerBean
 import com.zj.refreshlayout.SwipeRefreshLayout
 import com.zj.refreshlayout.SwipeRefreshStyle
@@ -93,58 +95,48 @@ fun HomeScreen(paddingValues: PaddingValues){
             }
         }
 
-        SwipeRefreshLayout(
-            isRefreshing = refreshState.isRefreshing,
-            onRefresh = {
-                homeListLazyPagingItems.refresh()
-            }) {
-
-            Scaffold(modifier = Modifier
+        Scaffold(modifier = Modifier
                 .padding(bottom = paddingValues.calculateBottomPadding())
                 .fillMaxSize()
             ) {
 
-                PagingStateUtil().pagingStateUtil(
-                    pagingData = homeListLazyPagingItems,
-                    refreshState = refreshState,
-                    viewModel = viewModel) {
-                    LazyColumn(
-                        Modifier
-                            .fillMaxSize()
-                            .background(Colors.white)){
+            SwipeRefreshList(
+                collectAsLazyPagingItems = homeListLazyPagingItems,
+                viewModel
+            ) {
+                item {
+                    Banner(list = bannerListData.value) {
 
-                        item {
-                            Banner(list = bannerListData.value){
-
-                            }
-                        }
-
-                        itemsIndexed(homeListLazyPagingItems){index, item ->
-                            ArticleItem(
-                                modifier = Modifier,
-                                article = item!!,
-                                onClickItemClick = {
-
-                                },
-                                onCollectClick = {
-
-                                }
-                            )
-                            Divider(Modifier.padding(16.dp, 0.dp), thickness = 0.5.dp)
-                        }
-
-                        when(homeListLazyPagingItems.loadState.append){
-                            is LoadState.Error -> item {
-                                UpLoadError(onClick = {
-
-                                })
-                            }
-
-                            is LoadState.Loading -> item {
-                                UpLoadLoading()
-                            }
-                        }
                     }
+                }
+
+                itemsIndexed(homeListLazyPagingItems) { index, item ->
+
+                    item?.run {
+                        var bean = CommonArticleBean(
+                            author,
+                            fresh,
+                            false,
+                            niceDate ?: "刚刚",
+                            title ?: "",
+                            superChapterName ?: "未知",
+                            chapterName ?: "未知",
+                            collect,
+                            tags
+                        )
+
+                        ArticleItem(
+                            modifier = Modifier,
+                            article = bean,
+                            onClickItemClick = {
+
+                            },
+                            onCollectClick = {
+
+                            }
+                        )
+                    }
+                    Divider(Modifier.padding(16.dp, 0.dp), thickness = 0.5.dp)
                 }
             }
 

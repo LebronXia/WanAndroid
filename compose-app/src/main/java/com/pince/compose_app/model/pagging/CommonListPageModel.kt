@@ -4,7 +4,9 @@ package com.pince.compose_app.model.pagging
  * Created by zxb in 2021/10/29
  */
 class CommonListPageModel<T>(
-    val `data`: Data<T>
+    val `data`: Data<T>,
+    val errorCode: Int,
+    val errorMsg: String,
 ) {
     data class Data<T>(
         val curPage: Int,

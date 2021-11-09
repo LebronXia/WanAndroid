@@ -46,8 +46,8 @@ interface WanService {
     suspend fun getWxArtileList(): WanResponse<List<TreeBean>>
 
     //查看某个公众号历史数据
-    @GET("https://wanandroid.com/wxarticle/list/{page}/{id}/json")
-    suspend fun getWxArticleDetail(@Path("page")page : Int, @Path("id") id: Int): WanResponse<TreeDetailBean>
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun getWxArticleDetail(@Path("page")page : Int, @Path("id") id: Int): CommonListPageModel<TreeItemData>
 
     //项目
     @GET("/project/tree/json")

@@ -95,7 +95,5 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-    //pager
-    implementation "com.google.accompanist:accompanist-pager:0.19.0"
 
 }

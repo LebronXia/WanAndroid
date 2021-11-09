@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pince.compose_app.model.entry.Article
+import com.pince.compose_app.model.entry.CommonArticleBean
 import com.pince.compose_app.ui.theme.Colors
 import java.lang.StringBuilder
 
@@ -24,14 +25,14 @@ import java.lang.StringBuilder
 @Composable
 fun ArticleItem(
     modifier: Modifier,
-    article: Article,
-    onClickItemClick: (Article) -> Unit,
+    article: CommonArticleBean,
+    onClickItemClick: () -> Unit,
     onCollectClick: () -> Unit ){
 
     Box(modifier = Modifier
         .fillMaxWidth()
         .clickable {
-            onClickItemClick(article)
+            onClickItemClick()
             //
         }){
         Column(modifier = Modifier.padding(16.dp, 10.dp)) {

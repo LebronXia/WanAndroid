@@ -11,6 +11,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pince.compose_app.model.MainScreenTab
 import com.pince.compose_app.model.storage.AppPreferences
+import com.pince.compose_app.ui.public.PublicWechatScreen
 import com.pince.compose_app.ui.theme.WanAndroidTheme
 import com.pince.compose_app.util.showToast
 import com.pince.compose_app.widget.MainScreenBottomBar
@@ -94,7 +95,7 @@ fun MainScreen(navController: NavController,
                             HomeScreen(paddingValues = paddingValues)
                         }
                         MainScreenTab.Wechat -> {
-                            HomeScreen(paddingValues = paddingValues)
+                            PublicWechatScreen(paddingValues = paddingValues)
                         }
                         MainScreenTab.Navigation -> {
                             HomeScreen(paddingValues = paddingValues)
