@@ -63,9 +63,11 @@ fun LoginScreen(navController: NavHostController) {  //navController: NavHostCon
         Box(modifier = Modifier.fillMaxSize()){
             Column(Modifier.fillMaxSize()) {
 
-                TitleBar(title = "登录", onBack = {
-                    navController.popBackStack()
-                })
+                TitleBar(title = "登录")
+
+//                onBack = {
+//                    navController.popBackStack()
+//                }
 
                 Column(Modifier.fillMaxSize()) {
                     Spacer(modifier = Modifier.height(120.dp))

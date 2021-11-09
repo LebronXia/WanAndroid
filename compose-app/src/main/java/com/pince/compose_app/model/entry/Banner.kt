@@ -3,7 +3,7 @@ package com.xiamu.wanandroid.mvvm.model.entry
 /**
  * Created by zhengxiaobo in 2019-11-01
  */
-data class Banner(
+data class BannerBean(
     val desc: String,
     val id: Int,
     val imagePath: String,

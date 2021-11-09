@@ -1,5 +1,7 @@
 package com.pince.compose_app.model.api
 
+import com.pince.compose_app.model.entry.Article
+import com.pince.compose_app.model.pagging.CommonListPageModel
 import com.xiamu.baselibs.base.WanResponse
 import com.xiamu.wanandroid.mvvm.model.entry.*
 import retrofit2.http.*
@@ -15,11 +17,11 @@ interface WanService {
 
     //获取首页文章列表
     @GET("/article/list/{page}/json")
-    suspend fun getHomeArticles(@Path("page") page: Int): WanResponse<ArticleList>
+    suspend fun getHomeArticles(@Path("page") page: Int): CommonListPageModel<Article>
 
     //获取首页banner
     @GET("/banner/json")
-    suspend fun getHomeBanner(): WanResponse<List<Banner>>
+    suspend fun getHomeBanner(): WanResponse<List<BannerBean>>
 
     //登录
     @FormUrlEncoded

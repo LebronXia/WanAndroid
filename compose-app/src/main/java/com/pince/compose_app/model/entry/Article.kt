@@ -52,3 +52,8 @@ data class ArticleTag(val name: String, val url: String){
         }
     }
 }
+
+data class BannerData(
+    val imageUrl: String,
+    val linkUrl: String
+)

@@ -15,7 +15,7 @@ import java.io.IOException
 class LoginModel : BaseModel() {
 
     suspend fun login(username: String, password: String) : Result<LoginBean>{
-        return safeApiCall(call = {requestLogin(username, password)},errorMessage = "登录失败")
+        return safeApiCall(call = {requestLogin(username, password)}, errorMessage = "登录失败")
     }
 
     suspend fun requestLogin(username:String, password:String): Result<LoginBean>{
@@ -25,7 +25,7 @@ class LoginModel : BaseModel() {
     }
 
     suspend fun register(username: String, password: String, repassword: String): Result<LoginBean>{
-        return safeApiCall(call = {requestRegister(username, password, repassword)},errorMessage = "注册失败")
+        return safeApiCall(call = {requestRegister(username, password, repassword)}, errorMessage = "注册失败")
     }
 
     suspend fun requestRegister(username:String, password:String, repassword: String): Result<LoginBean>{

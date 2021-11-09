@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavController
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pince.compose_app.model.MainScreenTab
 import com.pince.compose_app.model.storage.AppPreferences
 import com.pince.compose_app.ui.theme.WanAndroidTheme
@@ -22,6 +23,8 @@ import kotlinx.coroutines.launch
  * 主页面
  * Created by zxb in 2021/10/22
  */
+@ExperimentalMaterialApi
+@ExperimentalPagerApi
 @Composable
 fun MainScreen(navController: NavController,
                screenSelected: MainScreenTab,
@@ -55,7 +58,8 @@ fun MainScreen(navController: NavController,
                             }
                         },
                         onIconClick = {
-                            showToast("点击搜索~~~~")
+                           // showToast("点击搜索~~~~")
+                            navController.navigate("search")
                         }
                     )
                 },

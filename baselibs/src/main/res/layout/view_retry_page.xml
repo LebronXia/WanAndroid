@@ -14,12 +14,12 @@
     android:textSize="15sp" />
 
   <ImageView
-    android:id="@+id/img_page_empty"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_above="@id/tv_page_empty"
-    android:layout_centerInParent="true"
-    android:src="@drawable/img_tips_error_load_error" />
+      android:id="@+id/img_page_empty"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_above="@id/tv_page_empty"
+      android:layout_centerInParent="true"
+      android:src="@drawable/img_tips_error_load_error" />
 
   <Button
     android:layout_width="120dp"

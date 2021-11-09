@@ -203,8 +203,8 @@ class MainActivity: BaseModelActivity<MainViewModel>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.menu_search -> {
-               // startActivity(Intent(this, SearchActivity::class.java))
-                startActivity(Intent(this, DimPleActivity::class.java))
+                startActivity(Intent(this, SearchActivity::class.java))
+                //startActivity(Intent(this, DimPleActivity::class.java))
                 return true
             }
 

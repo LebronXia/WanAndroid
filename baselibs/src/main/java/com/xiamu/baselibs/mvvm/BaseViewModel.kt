@@ -17,7 +17,6 @@ import org.simple.eventbus.EventBus
 /**
  * Created by zhengxiaobo in 2019-10-28
  * 引入ViewModelScope来管理协程取消
- * viewModelScope 默认使用 Dispatchers.Main
  */
 open class BaseViewModel : ViewModel(), IViewModel, LifecycleObserver {
 

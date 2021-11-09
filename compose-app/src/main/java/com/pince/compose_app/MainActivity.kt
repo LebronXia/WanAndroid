@@ -3,6 +3,7 @@ package com.pince.compose_app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -11,12 +12,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pince.compose_app.model.MainScreenTab
 import com.pince.compose_app.ui.home.MainScreen
 import com.pince.compose_app.ui.login.RegisterScreen
+import com.pince.compose_app.ui.search.SearchScreen
 import com.pince.compose_app.ui.theme.WanAndroidTheme
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalMaterialApi
+    @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -25,6 +30,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalMaterialApi
+@ExperimentalPagerApi
 @Composable
 fun NavigationView(){
     val navController = rememberNavController()
@@ -40,5 +47,6 @@ fun NavigationView(){
             onTabSelected = {
                 screenSelected = it
             })}
+        composable("search"){ SearchScreen(navController)}
     }
 }
