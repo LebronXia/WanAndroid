@@ -92,15 +92,13 @@ fun <T: Any> SwipeRefreshList(collectAsLazyPagingItems: LazyPagingItems<T>, view
                     }
 
                     loadState.refresh is LoadState.Loading -> {
-//                             item {
-//                                Column(modifier = Modifier.fillMaxSize(),verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally) {
-//                                    CircularProgressIndicator(modifier = Modifier.padding(10.dp))
-//                                }
-//                            }
-//                        if(showFirstScreen){
-//                            showFirstScreen = false
+//                        if(collectAsLazyPagingItems.itemCount == 0){
 //                            item {
-//                                Column(modifier = Modifier.fillMaxSize(),verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally) {
+//                                Column(modifier = Modifier.
+//                                    fillMaxSize(),
+//                                    verticalArrangement = Arrangement.Center,
+//                                    horizontalAlignment = Alignment.CenterHorizontally
+//                                ) {
 //                                    CircularProgressIndicator(modifier = Modifier.padding(10.dp))
 //                                }
 //                            }

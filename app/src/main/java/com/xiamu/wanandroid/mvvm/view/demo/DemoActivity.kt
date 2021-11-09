@@ -5,6 +5,7 @@ import android.view.View
 import com.xiamu.baselibs.base.BaseActivity
 import com.xiamu.baselibs.util.startKtxActivity
 import com.xiamu.wanandroid.R
+import com.xiamu.wanandroid.mvvm.demo.ButtonTextActivity
 import com.xiamu.wanandroid.mvvm.demo.flow.FlowDemoActivity
 import com.xiamu.wanandroid.mvvm.demo.navigation.NavigationActivity
 import com.xiamu.wanandroid.mvvm.demo.paging3.PagingDemoActivity
@@ -48,7 +49,8 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
                 startActivity(Intent(this, NavigationActivity::class.java))
             }
             R.id.tv_flow -> {
-                startKtxActivity<FlowDemoActivity>()
+               // startKtxActivity<FlowDemoActivity>()
+                startKtxActivity<ButtonTextActivity>()
             }
             R.id.tv_paging3 -> {
                 startKtxActivity<PagingDemoActivity>()

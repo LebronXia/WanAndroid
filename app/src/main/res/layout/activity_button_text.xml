@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/haha1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@color/Green"
+        android:text="haha1"
+        />
+
+    <TextView
+        android:id="@+id/haha2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Red"
+        android:text="haha2"
+        />
+
+    <TextView
+        android:id="@+id/haha3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Blue"
+        android:text="haha3"
+        />
+
+    <TextView
+        android:id="@+id/haha4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="haha4"
+        />
+
+
+
+</FrameLayout>

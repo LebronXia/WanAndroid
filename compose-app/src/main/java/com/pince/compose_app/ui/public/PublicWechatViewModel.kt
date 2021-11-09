@@ -1,6 +1,7 @@
 package com.pince.compose_app.ui.public
 
 import android.util.Log
+import androidx.collection.LongSparseArray
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -28,11 +29,7 @@ class PublicWechatViewModel: BaseViewModel() {
 
     private val wxArticleRepo by lazy { WxArticleRepo() }
 
-    //公众号id
-    var indexId by mutableStateOf(0)
-
-    //保存改变过id
-    var saveChangePublicNumIndex = 0
+    val tabViewModelMap = LongSparseArray<PublicWechatTabViewModel>()
 
     private val _publicNumChapter = MutableStateFlow<List<TreeBean>>(emptyList())
     val publicNumChapter = _publicNumChapter
@@ -53,16 +50,6 @@ class PublicWechatViewModel: BaseViewModel() {
             }
         }
     }
-
-    //公众号某个列表数据
-    val publicNumListData: Flow<PagingData<TreeItemData>>
-        get() = _publicNumListData
-
-    private val _publicNumListData = Pager(PagingConfig(pageSize = 20)){
-        CommonPagingSource<TreeItemData>{nextPage: Int ->
-            wxArticleRepo.getWxArticleList(nextPage, indexId)
-        }
-    }.flow.cachedIn(viewModelScope)
 
 
 }
