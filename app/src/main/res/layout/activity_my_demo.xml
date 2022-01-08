@@ -52,6 +52,12 @@
                 android:onClick="onClick"
                 android:text="paging3"/>
 
+            <TextView
+                android:id="@+id/tv_count_recycle"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="倒计时的RecyleView"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

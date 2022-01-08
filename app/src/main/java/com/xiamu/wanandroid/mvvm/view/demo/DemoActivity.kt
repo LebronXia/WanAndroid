@@ -9,6 +9,7 @@ import com.xiamu.wanandroid.mvvm.demo.ButtonTextActivity
 import com.xiamu.wanandroid.mvvm.demo.flow.FlowDemoActivity
 import com.xiamu.wanandroid.mvvm.demo.navigation.NavigationActivity
 import com.xiamu.wanandroid.mvvm.demo.paging3.PagingDemoActivity
+import com.xiamu.wanandroid.mvvm.demo.recycleviewCountDown.CountRecycActivity
 import com.xiamu.wanandroid.mvvm.view.demo.CustomViewGroup.TheActivity
 import com.xiamu.wanandroid.mvvm.view.demo.layoutmanager.LayoutManagerActivity
 import kotlinx.android.synthetic.main.toolbar.*
@@ -55,6 +56,11 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
             R.id.tv_paging3 -> {
                 startKtxActivity<PagingDemoActivity>()
             }
+
+            R.id.tv_count_recycle -> {
+                startKtxActivity<CountRecycActivity>()
+            }
+
         }
     }
 
