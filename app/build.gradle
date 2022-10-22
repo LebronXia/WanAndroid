@@ -108,6 +108,8 @@ dependencies {
     //paging3
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
 }
 
 kapt {

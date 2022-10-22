@@ -2,11 +2,13 @@ package com.xiamu.baselibs.util
 
 import android.content.ClipData
 import android.content.Context
+import android.content.res.Resources
 import android.os.Build
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -73,6 +75,16 @@ fun View.px2dp(px: Int): Int {
     val scale = resources.displayMetrics.density
     return (px / scale + 0.5f).toInt()
 }
+
+val Float.dp
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this,
+        Resources.getSystem().displayMetrics)
+
+val Int.dp
+    get() = this.toFloat().dp
+
 
 /**
  * Check if the accessibility Service which name is [serviceName] is enabled

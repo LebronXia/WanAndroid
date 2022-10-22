@@ -57,6 +57,16 @@
                 style="@style/MyTextView"
                 android:onClick="onClick"
                 android:text="倒计时的RecyleView"/>
+            <TextView
+                android:id="@+id/tv_viewpager2"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="viewpager2"/>
+            <TextView
+                android:id="@+id/tecent_class_view"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="tecentclassView"/>
 
         </LinearLayout>
 

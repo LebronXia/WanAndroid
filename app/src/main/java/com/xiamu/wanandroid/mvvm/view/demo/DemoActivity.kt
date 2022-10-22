@@ -6,10 +6,13 @@ import com.xiamu.baselibs.base.BaseActivity
 import com.xiamu.baselibs.util.startKtxActivity
 import com.xiamu.wanandroid.R
 import com.xiamu.wanandroid.mvvm.demo.ButtonTextActivity
+import com.xiamu.wanandroid.mvvm.demo.TencentClassLoading.CustomViewActivity
+import com.xiamu.wanandroid.mvvm.demo.TwoViewActivity
 import com.xiamu.wanandroid.mvvm.demo.flow.FlowDemoActivity
 import com.xiamu.wanandroid.mvvm.demo.navigation.NavigationActivity
 import com.xiamu.wanandroid.mvvm.demo.paging3.PagingDemoActivity
 import com.xiamu.wanandroid.mvvm.demo.recycleviewCountDown.CountRecycActivity
+import com.xiamu.wanandroid.mvvm.demo.viewpager2.ViewPager2DemoActivity
 import com.xiamu.wanandroid.mvvm.view.demo.CustomViewGroup.TheActivity
 import com.xiamu.wanandroid.mvvm.view.demo.layoutmanager.LayoutManagerActivity
 import kotlinx.android.synthetic.main.toolbar.*
@@ -50,8 +53,8 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
                 startActivity(Intent(this, NavigationActivity::class.java))
             }
             R.id.tv_flow -> {
-               // startKtxActivity<FlowDemoActivity>()
-                startKtxActivity<ButtonTextActivity>()
+                startKtxActivity<TwoViewActivity>()
+                //startKtxActivity<ButtonTextActivity>()
             }
             R.id.tv_paging3 -> {
                 startKtxActivity<PagingDemoActivity>()
@@ -59,6 +62,14 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
 
             R.id.tv_count_recycle -> {
                 startKtxActivity<CountRecycActivity>()
+            }
+
+            R.id.tv_viewpager2 -> {
+                startKtxActivity<ViewPager2DemoActivity>()
+            }
+
+            R.id.tecent_class_view -> {
+                startKtxActivity<CustomViewActivity>()
             }
 
         }

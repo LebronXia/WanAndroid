@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvvm.view.activity.MainActivity">
+        <activity android:name=".mvvm.view.activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,6 +51,9 @@
         <activity android:name=".mvvm.demo.recycleviewCountDown.CountRecycActivity"/>
 
         <activity android:name=".mvvm.demo.ButtonTextActivity"/>
+        <activity android:name=".mvvm.demo.TwoViewActivity"/>
+        <activity android:name=".mvvm.demo.viewpager2.ViewPager2DemoActivity"/>
+        <activity android:name=".mvvm.demo.TencentClassLoading.CustomViewActivity"/>
         <meta-data
             android:name="design_width_in_dp"
             android:value="360"/>
