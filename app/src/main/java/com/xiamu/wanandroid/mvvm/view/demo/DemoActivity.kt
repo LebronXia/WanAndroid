@@ -5,6 +5,7 @@ import android.view.View
 import com.xiamu.baselibs.base.BaseActivity
 import com.xiamu.baselibs.util.startKtxActivity
 import com.xiamu.wanandroid.R
+import com.xiamu.wanandroid.mvi.MVIHomeActivity
 import com.xiamu.wanandroid.mvvm.demo.ButtonTextActivity
 import com.xiamu.wanandroid.mvvm.demo.TencentClassLoading.CustomViewActivity
 import com.xiamu.wanandroid.mvvm.demo.TwoViewActivity
@@ -70,6 +71,10 @@ class DemoActivity : BaseActivity(), View.OnClickListener{
 
             R.id.tecent_class_view -> {
                 startKtxActivity<CustomViewActivity>()
+            }
+
+            R.id.mvi_home -> {
+                startKtxActivity<MVIHomeActivity>()
             }
 
         }

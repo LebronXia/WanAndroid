@@ -18,6 +18,7 @@ import com.xiamu.wanandroid.R
 import kotlin.math.max
 import kotlin.math.min
 
+//https://blog.csdn.net/willway_wang/article/details/125244145?spm=1001.2014.3001.5502
 class TencentClassLoadingView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {

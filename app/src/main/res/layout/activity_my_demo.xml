@@ -68,6 +68,12 @@
                 android:onClick="onClick"
                 android:text="tecentclassView"/>
 
+            <TextView
+                android:id="@+id/mvi_home"
+                style="@style/MyTextView"
+                android:onClick="onClick"
+                android:text="HomeMvi"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

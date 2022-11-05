@@ -54,6 +54,7 @@
         <activity android:name=".mvvm.demo.TwoViewActivity"/>
         <activity android:name=".mvvm.demo.viewpager2.ViewPager2DemoActivity"/>
         <activity android:name=".mvvm.demo.TencentClassLoading.CustomViewActivity"/>
+        <activity android:name=".mvi.MVIHomeActivity"/>
         <meta-data
             android:name="design_width_in_dp"
             android:value="360"/>
