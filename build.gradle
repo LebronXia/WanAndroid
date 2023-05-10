@@ -8,12 +8,13 @@ buildscript {
         nav_version = "2.3.2"
         compose_version = '1.0.1'
         accompanist_version = '0.18.0'
-        room_version = "2.3.0"
+        room_version = "2.4.2"
     }
     repositories {
         google()
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
 //        maven{
 //            allowInsecureProtocol = true
 //            url 'http://maven.aliyun.com/nexus/content/groups/public/'}
@@ -33,7 +34,11 @@ allprojects {
         mavenCentral()
         maven { url "https://jitpack.io" }
         //maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'org.xerial:sqlite-jdbc:3.34.0'
+        }
     }
 }
 

@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/search_clear"
                         android:textSize="@dimen/sp_16"
-                        android:textColor="@color/text_gray"
+                        android:textColor="@color/black"
                         android:layout_alignParentRight="true"
                         />
 

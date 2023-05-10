@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import com.hss01248.dialog.MyActyManager
 import com.hss01248.dialog.StyledDialog
 import com.kingja.loadsir.core.LoadSir
 import com.orhanobut.logger.Logger
@@ -57,7 +56,7 @@ class WanAndApplication: BaseApplication() {
         override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
             Log.d(TAG, "onCreated: " + activity.componentName.className)
            // StyledDialog
-            MyActyManager.getInstance().currentActivity = activity
+           // MyActyManager.getInstance().currentActivity = activity
         }
 
         override fun onActivityStarted(activity: Activity) {

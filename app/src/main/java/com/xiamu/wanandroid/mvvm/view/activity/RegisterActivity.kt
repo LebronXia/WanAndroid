@@ -85,7 +85,7 @@ class RegisterActivity : BaseVmActivity<LoginViewmodelBinding, LoginViewModel>()
     }
 
     fun hideLoading(){
-        StyledDialog.dismissLoading()
+        StyledDialog.dismissLoading(this)
     }
 
     private fun validate(): Boolean {

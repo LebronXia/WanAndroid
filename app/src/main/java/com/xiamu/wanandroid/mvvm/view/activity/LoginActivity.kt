@@ -86,11 +86,11 @@ class LoginActivity : BaseVmActivity<LoginBinding, LoginViewModel>() {
     }
 
     fun showLoading(){
-        StyledDialog.updateLoadingMsg("正在登陆")
+        StyledDialog.buildLoading().show();
     }
 
     fun hideLoading(){
-        StyledDialog.dismissLoading()
+        StyledDialog.dismissLoading(this)
     }
 
     private fun validate(): Boolean{
