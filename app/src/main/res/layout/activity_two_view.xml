@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.xiamu.wanandroid.mvvm.demo.twoView.MyRelativeLayout
+    <com.xiamu.wanandroid.mvvm.view.demo.twoView.MyRelativeLayout
         android:id="@+id/bottomView"
         android:layout_width="300dp"
         android:layout_height="match_parent"
@@ -14,7 +14,7 @@
         android:background="@color/Green"
         />
 
-    <com.xiamu.wanandroid.mvvm.demo.twoView.MyRelativeLayout2
+    <com.xiamu.wanandroid.mvvm.view.demo.twoView.MyRelativeLayout2
         android:id="@+id/topView"
         android:layout_width="200dp"
         android:layout_height="match_parent"
